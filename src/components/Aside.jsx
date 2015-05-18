@@ -1,0 +1,72 @@
+var React = require('react/addons');
+var cx = React.addons.classSet;
+var Reflux = require('reflux');
+
+var Actions = require('./Actions');
+
+var $ = require('jquery');
+var _ = require('underscore');
+
+var Tags = [];
+
+module.exports = React.createClass({
+
+  getPostsFilteredByTag(e) {
+    e.preventDefault();
+    Actions.filterByTag($(e.target).text());
+    Actions.switchActive();
+  },
+
+  getAllPosts(e) {
+    e.preventDefault();
+    Actions.showAll();
+    Actions.switchActive();
+  },
+
+  searchPosts(e) {
+    var input = $(e.target).val();
+    if(input === '') { return; }
+    Actions.searchPosts(input);
+  },
+
+  _onClick(e) {
+    e.preventDefault();
+    // $('.btn__filter').removeClass('current');
+    // console.log($(this).text());
+    // $(this).addClass('current');
+  },
+
+  componentDidMount() {
+    $('.filter-item').on('click', this._onClick);
+  },
+
+  render() {
+
+    var self = this;
+    var isFiltered = this.props.isFiltered;
+
+    var tags = this.props.tags.map(function(tag) {
+      return (
+        <li key={tag} className="filter-item mg-btm-xs">
+          <button onClick={self.getPostsFilteredByTag} className="filter-item__btn btn__filter">{tag}</button>
+        </li>
+      );
+    });
+
+    return(
+        <aside className="aside clearfix">
+          <nav className="filter-nav">
+            <div className="filter-nav__search">
+              <input onKeyUp={this.searchPosts} type="search" placeholder="search..." />
+            </div>
+            <ul className="filter-nav__list clearfix" id="quotes-filter">
+              <li className="filter-item mg-btm-xs">
+                <button onClick={this.getAllPosts} className={cx({"current": !isFiltered, "filter-item__btn": true,  "btn__default": true})} id="org-filter-all">All</button>
+              </li>
+              {tags}
+            </ul>
+          </nav>
+        </aside>
+    );
+  }
+});

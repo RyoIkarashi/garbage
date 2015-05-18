@@ -1,0 +1,100 @@
+// When navigation is open
+.nav-open .header {
+	#menu-toggle {
+		.menu-toggle-line {
+			background-color: #fff;
+			&:first-child { transform: rotate(-45deg); top: 27px; }
+			&:nth-child(2) { display: none; }
+			&:last-child { transform: rotate(45deg); top: 27px; }
+		}
+	}
+}
+
+.header {
+	font-family: $header-title-f;
+	background-color: $header-bg-color;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 100;
+	transform: translateY(0);
+	transition: transform .15s cubic-bezier(0.2,0.3,0.25,0.9);
+	background-color: #ff8088;
+	// Auto Sticky header
+	&.header--hidden {
+		transform: translateY(-100%);
+	}
+	.header-inner {
+		position: relative;
+	}
+	#menu-toggle {
+		display: inline-block;
+		width: 60px;
+		height: 60px;
+		position: relative;
+		float: left;
+		.menu-toggle-line {
+			width: 26px;
+			height: 2px;
+			background-color: #fff;
+			margin: 0 auto;
+			display: block;
+			position: absolute;
+			left: 16px;
+			transition: all .15s cubic-bezier(0.2,0.3,0.25,0.9);
+			&:first-child { top: 19px; }
+			&:nth-child(2) { top: 27px; }
+			&:last-child { top: 35px; }
+		}
+	}
+	.header__logo {
+		font-size: 3em;
+		color: $header-title-c;
+		display: inline-block;
+		@media screen and (min-width: $min-width-md) {
+			text-align: center;
+		}
+		@at-root{
+			#{&}__initial-letter {
+				font-size: 1.3em;
+				color: $header-logo-initial-letter;
+			}
+			#{&}__others {
+				font-size: .5em;
+				color: $header-logo-others;
+			}
+		}
+		& a:hover {
+			transition: .3s;
+			text-decoration: none;
+			cursor: pointer;
+			.header__logo__initial-letter {
+				transition: .7s;
+				transform: rotate(360deg);
+			}
+		}
+	}
+	.header__back-to-top {
+		display: inline-block;
+		float: right;
+		width: 40px;
+		height: 40px;
+		color: #fdb0ad;
+		border: 1px solid #fdb0ad;
+		border-radius: 2px;
+		background: transparent;
+		transition: .15s all cubic-bezier(0.2,0.3,0.25,0.9);
+		line-height: 40px;
+		text-align: center;
+		text-decoration: none;
+		margin-top: 10px;
+		margin-right: 30px;
+		cursor: pointer;
+		&:hover {
+			color: #fff;
+			background: #fdb0ad;
+		}
+	}
+}

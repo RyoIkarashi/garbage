@@ -1,0 +1,13 @@
+.load-more-button-wrapper {
+	padding-bottom: 70px;
+	@media screen and (max-width: $max-width-xs) {
+		text-align: center;
+	}
+}
+#load-more-button {
+	outline: none;
+	&:hover {
+		transition: .3s ease-in-out;
+		background-color: #eee;
+	}
+}
