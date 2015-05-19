@@ -4,7 +4,10 @@ var Reflux = require('reflux');
 var Actions = require('./Actions');
 
 var $ = require('jquery');
+require('jquery');
 var _ = require('underscore');
+require('jquery-colorbox');
+
 var MasonryMixin = require('react-masonry-mixin');
 var masonryOptions = { transitionDuration: 300 };
 
@@ -66,6 +69,12 @@ module.exports = React.createClass({
   },
 
   componentDidUpdate() {
+    $('.quote-item__img-wrapper', this.getDOMNode()).colorbox({
+      rel: 'gal',
+      maxWidth: "90%",
+      maxHeight: "90%",
+      opacity: 0.7
+    });
   },
 
   render() {
@@ -79,7 +88,7 @@ module.exports = React.createClass({
             {
               post.acf.photo != '' && post.acf.photo_caption != '' || post.acf.photo_caption != '' && post.acf.photo == ''
               ? <figure className="quote-item__figure">
-                  <img className="quote-item__img" src={post.acf.photo}/>
+                  <a className="quote-item__img-wrapper" href={post.acf.photo} title={post.acf.photo_caption + ' [' + self.trimDate(post.date) + ']'}><img className="quote-item__img" src={post.acf.photo}/></a>
                   <figcaption className="quote-item__imgcaption"><span>{post.acf.photo_caption}</span></figcaption>
                 </figure>
               : ''

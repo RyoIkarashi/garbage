@@ -31,6 +31,7 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
   <!-- Fontawesome -->
   <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <!-- Colorbox -->
   <!-- Stylesheets -->
   <link href="/assets/main.css" rel="stylesheet" type="text/css"/>
 

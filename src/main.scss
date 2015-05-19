@@ -5,10 +5,13 @@
 @import './styles/variables';
 @import './styles/mobile-settings';
 
+// Plugins Settings
+@import './styles/colorbox';
+
 // CSS Loading
 @import './styles/loading';
 
-// Base and Modules 
+// Base and Modules
 @import './styles/base';
 @import './styles/modules';
 
