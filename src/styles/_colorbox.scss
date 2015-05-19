@@ -23,6 +23,10 @@
 #colorbox{outline:0;/*margin:20px;*/}
 #cboxContent{background:#000;}
 .cboxIframe{background:#fff;}
+#cboxPrevious, #cboxNext {position: absolute; bottom: 0; background: #fff; display: block; padding: 0 20px; width: auto; height: 30px; transition: background .15s, color .15s;}
+#cboxPrevious:hover, #cboxNext:hover {background: #ff8088; color: #fff;}
+#cboxPrevious{left: 0;}
+#cboxNext{right: 0;}
 #cboxError{padding:50px; border:1px solid #ccc;}
 #cboxLoadedContent{background:#000;}
 #cboxTitle{position:absolute; top:0; left:0; color:white; background-color:#ff8088; padding:0.25em 0.5em;}
@@ -32,7 +36,7 @@
 .cboxPhoto{border:5px solid #fff;}
 
 /* these elements are buttons, and may need to have additional styles reset to avoid unwanted base styles */
-#cboxPrevious, #cboxNext, #cboxSlideshow, #cboxClose {border:0; padding:0; margin:0; overflow:visible; width:auto; background:none; }
+#cboxSlideshow, #cboxClose {border:0; padding:0; margin:0; overflow:visible; width:auto; background:none; }
 
 /* avoid outlines on :active (mouseclick), but preserve outlines on :focus (tabbed navigating) */
 #cboxPrevious:active, #cboxNext:active, #cboxSlideshow:active, #cboxClose:active {outline:0;}
