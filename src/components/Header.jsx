@@ -9,6 +9,7 @@ module.exports = React.createClass({
   _onClick(e) {
     e.preventDefault();
     Actions.switchActive();
+    $('.search__input').focus();
   },
 
   autoHideStickyHeader() {
