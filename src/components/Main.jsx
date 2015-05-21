@@ -94,6 +94,7 @@ module.exports = React.createClass({
     var self = this;
     var numOfArticles = this.props.list.posts.length;
     var currentTag = this.props.list.currentTag;
+    var isFiltered = this.props.list.isFiltered;
     var isCurrentTag = false;
 
     var articles = this.props.list.posts.map(function(post) {
@@ -143,8 +144,9 @@ module.exports = React.createClass({
             <time className="quote-item__date col-md-11 col-sm-11 col-xs-11"><a onClick={self.getPostsFilteredByDate} className="date-filter-btn" href="">{self.trimDate(post.date)}</a></time>
             {post.terms.post_tag.map(function(tag) {
               isCurrentTag = tag.name === currentTag ? true : false;
+              isFiltered = self.props.list.isFiltered;
               return(
-                <button key={tag.name} onClick={self.getPostsFilteredByTag} disabled={isCurrentTag} className={cx({'current': isCurrentTag, 'quote-item__tag': true})}>{tag.name}</button>
+                <button key={tag.name} onClick={self.getPostsFilteredByTag} disabled={isCurrentTag} className={cx({'current': isCurrentTag && isFiltered, 'quote-item__tag': true})}>{tag.name}</button>
               );
             })}
           </article>

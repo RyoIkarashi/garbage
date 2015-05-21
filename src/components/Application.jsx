@@ -22,7 +22,7 @@ module.exports = React.createClass({
       <DocumentTitle title="garbage">
         <div>
           <Header />
-          <Aside tags={this.state.list.tags} isFiltered={this.state.list.isFiltered} />
+          <Aside tags={this.state.list.tags} isFiltered={this.state.list.isFiltered} currentTag={this.state.list.currentTag} />
           <Main list={this.state.list} />
           <Footer />
         </div>

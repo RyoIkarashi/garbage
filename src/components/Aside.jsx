@@ -13,7 +13,7 @@ module.exports = React.createClass({
 
   getPostsFilteredByTag(e) {
     e.preventDefault();
-    this.addCurrentTagClass(e);
+    // this.addCurrentTagClass(e);
     Actions.filterByTag($(e.target).text());
     Actions.switchActive();
   },
@@ -38,10 +38,10 @@ module.exports = React.createClass({
     Actions.switchActive();
   },
 
-  addCurrentTagClass(e) {
-    $('.btn__filter').removeClass('current');
-    $(e.target).addClass('current');
-  },
+  // addCurrentTagClass(e) {
+  //   $('.btn__filter').removeClass('current');
+  //   $(e.target).addClass('current');
+  // },
 
   componentDidMount() {
     $('.filter-item').on('click', this._onClick);
@@ -50,12 +50,15 @@ module.exports = React.createClass({
   render() {
 
     var self = this;
+    var currentTag = this.props.currentTag;
+    var isCurrentTag = false;
     var isFiltered = this.props.isFiltered;
 
     var tags = this.props.tags.map(function(tag) {
+      isCurrentTag = currentTag === tag ? true : false;
       return (
         <li key={tag} className="filter-item mg-btm-xs">
-          <button onClick={self.getPostsFilteredByTag} className="filter-item__btn btn__filter">{tag}</button>
+          <button onClick={self.getPostsFilteredByTag} className={cx({'current': isFiltered && isCurrentTag,'filter-item__btn': true, 'btn__filter': true})}>{tag}</button>
         </li>
       );
     });
