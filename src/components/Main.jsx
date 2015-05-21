@@ -151,8 +151,6 @@ module.exports = React.createClass({
       );
     });
 
-    console.log(this.props.list.posts);
-
     return(
         <main className="content-main pd-xs clearfix" role="main">
           {!numOfArticles && this.props.list.isSearched ? <div className="no-results-found">No Results Found... :(</div> : ''}
