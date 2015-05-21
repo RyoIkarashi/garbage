@@ -13,7 +13,6 @@ module.exports = React.createClass({
 
   getPostsFilteredByTag(e) {
     e.preventDefault();
-    // this.addCurrentTagClass(e);
     Actions.filterByTag($(e.target).text());
     Actions.switchActive();
   },
@@ -37,11 +36,6 @@ module.exports = React.createClass({
     Actions.searchPosts(input);
     Actions.switchActive();
   },
-
-  // addCurrentTagClass(e) {
-  //   $('.btn__filter').removeClass('current');
-  //   $(e.target).addClass('current');
-  // },
 
   componentDidMount() {
     $('.filter-item').on('click', this._onClick);
