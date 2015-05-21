@@ -31,6 +31,7 @@ module.exports = (grunt) ->
       dev:
         files:
           'dist/assets/bundle.js': 'src/main.jsx'
+          'dist/assets/iehack.js': 'src/iehack.js'
         options:
           browserifyOptions:
             debug: true
@@ -38,6 +39,7 @@ module.exports = (grunt) ->
       dist:
         files:
           'dist/assets/bundle.js': 'src/main.jsx'
+          'dist/assets/iehack.js': 'src/iehack.js'
         options:
           browserifyOptions:
             debug: true
@@ -52,6 +54,7 @@ module.exports = (grunt) ->
 
     uglify:
       'dist/assets/bundle.js': 'dist/assets/bundle.js'
+      'dist/assets/iehack.js': 'dist/assets/iehack.js'
       options:
         report: 'gzip'
 

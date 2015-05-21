@@ -31,20 +31,10 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
   <!-- Fontawesome -->
   <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-  <!-- Colorbox -->
   <!-- Stylesheets -->
   <link href="/assets/main.css" rel="stylesheet" type="text/css"/>
 
-  <!-- IE Hacks -->
-  <!--[if lt IE 9]>
-  <script src="./js/html5shiv.js"></script>
-  <![endif]-->
-  <!--[if lt IE 9]>
-  <script src="./js/css3-mediaqueries.js"></script>
-  <![endif]-->
-  <!-- [if lte IE 7.0]>
-  <script src="./js/imgSizer.js"></script>
-  <![endif]-->
+  <!--[if IE 8]> <script src="/assets/iehack.js"></script> <![endif]-->
 
 </head>
 
