@@ -21,6 +21,7 @@ module.exports = Reflux.createStore({
       currentTag: '',
       currentPage: 1,
       isFiltered: false,
+      isSearched: false,
       currentInput: '',
       currentFilteredDate: {}
     };
@@ -33,6 +34,7 @@ module.exports = Reflux.createStore({
 
     // Assign new value to each state
     this.list.isFiltered = true;
+    this.list.isSearched = false;
     this.list.currentTag = tag;
     this.list.currentPage = 1;
     this.list.loading = false;
@@ -56,6 +58,7 @@ module.exports = Reflux.createStore({
 
     // Assign new value to each state
     this.list.isFiltered = true;
+    this.list.isSearched = false;
     this.list.currentTag = '';
     this.list.currentPage = 1;
     this.list.loading = false;
@@ -88,6 +91,7 @@ module.exports = Reflux.createStore({
 
     // Assign new value to each state
     this.list.isFiltered = false;
+    this.list.isSearched = false;
     this.list.currentTag = '';
     this.list.currentPage = 1;
     this.list.loading = false;
@@ -133,6 +137,7 @@ module.exports = Reflux.createStore({
 
     // Assign new value to each state
     this.list.isFiltered = false;
+    this.list.isSearched = true;
     this.list.currentTag = '';
     this.list.currentPage = 1;
     this.list.loading = false;

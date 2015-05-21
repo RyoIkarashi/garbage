@@ -80,6 +80,7 @@ module.exports = React.createClass({
   render() {
 
     var self = this;
+    var numOfArticles = this.props.list.posts.length;
 
     var articles = this.props.list.posts.map(function(post) {
       return(
@@ -132,6 +133,7 @@ module.exports = React.createClass({
 
     return(
         <main className="content-main pd-xs clearfix" role="main">
+          {!numOfArticles && this.props.list.isSearched ? <div className="no-results-found">No Results Found... :(</div> : ''}
           <div ref="masonryContainer" className="quotes-gallery clearfix">{articles}</div>
           <div className="overlay"></div>
         </main>
