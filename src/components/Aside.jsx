@@ -23,10 +23,17 @@ module.exports = React.createClass({
     Actions.switchActive();
   },
 
+  _onKeyPress(e) {
+    var isEntered = e.which === 13;
+    isEntered ? this.searchPosts() : '';
+  },
+
   searchPosts(e) {
-    var input = $(e.target).val();
+    var input = $('.search__input', this.getDOMNode()).val();
+    console.log(input);
     if(input === '') { return; }
     Actions.searchPosts(input);
+    Actions.switchActive();
   },
 
   _onClick(e) {
@@ -57,7 +64,8 @@ module.exports = React.createClass({
         <aside className="aside clearfix">
           <nav className="filter-nav">
             <div className="filter-nav__search">
-              <input onKeyUp={this.searchPosts} type="search" placeholder="search..." />
+              <input onKeyPress={this._onKeyPress} className="search__input" type="search" placeholder="search..." />
+              <button className="search__button fa fa-search" onClick={this.searchPosts}></button>
             </div>
             <ul className="filter-nav__list clearfix" id="quotes-filter">
               <li className="filter-item mg-btm-xs">
