@@ -139,6 +139,7 @@
 		transition: filter .15s ease-in-out, transform .15s ease-in-out;
 		border-radius: 3px;
 		filter: grayscale(100%);
+		width: 100%;
 	}
 	#{&}__imgcaption {
 		position: absolute;

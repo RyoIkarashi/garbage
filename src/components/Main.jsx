@@ -57,6 +57,17 @@ module.exports = React.createClass({
     }
   },
 
+  getThumbnail(photo_url) {
+    var THUMB_SIZE = "400x400";
+    if(photo_url) {
+      var photo = photo_url;
+      var photo_name = photo.slice(0, -4);
+      var resizePhotoName = photo_name + '-' + THUMB_SIZE;
+      var photoExt  = photo.substr(-4);
+      return thumbnail_url  = resizePhotoName + photoExt;
+    }
+  },
+
   componentDidMount() {
     $('.overlay', this.getDOMNode()).on('click', this.switchActive);
   },
@@ -86,13 +97,18 @@ module.exports = React.createClass({
     var isCurrentTag = false;
 
     var articles = this.props.list.posts.map(function(post) {
+
+      var thumbnail = self.getThumbnail(post.acf.photo);
+
       return(
           <article key={post.guid} className="quote-item mg-top-md pd-md">
             <h2 className="quote-item__title">{post.acf.title}</h2>
             {
               post.acf.photo != '' && post.acf.photo_caption != '' || post.acf.photo_caption != '' && post.acf.photo == ''
               ? <figure className="quote-item__figure">
-                  <a className="quote-item__img-wrapper" href={post.acf.photo} title={post.acf.photo_caption + ' [' + self.trimDate(post.date) + ']'}><img className="quote-item__img" src={post.acf.photo}/></a>
+                  <a className="quote-item__img-wrapper" href={post.acf.photo} title={post.acf.photo_caption + ' [' + self.trimDate(post.date) + ']'}>
+                    <img className="quote-item__img" src={thumbnail}/>
+                  </a>
                   <figcaption className="quote-item__imgcaption"><span>{post.acf.photo_caption}</span></figcaption>
                 </figure>
               : ''
@@ -134,6 +150,8 @@ module.exports = React.createClass({
           </article>
       );
     });
+
+    console.log(this.props.list.posts);
 
     return(
         <main className="content-main pd-xs clearfix" role="main">
