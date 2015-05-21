@@ -1,4 +1,5 @@
-var React = require('react');
+var React = require('react/addons');
+var cx = React.addons.classSet;
 var Route = require('react-router');
 var Reflux = require('reflux');
 var Actions = require('./Actions');
@@ -81,6 +82,8 @@ module.exports = React.createClass({
 
     var self = this;
     var numOfArticles = this.props.list.posts.length;
+    var currentTag = this.props.list.currentTag;
+    var isCurrentTag = false;
 
     var articles = this.props.list.posts.map(function(post) {
       return(
@@ -123,8 +126,9 @@ module.exports = React.createClass({
             }
             <time className="quote-item__date col-md-11 col-sm-11 col-xs-11"><a onClick={self.getPostsFilteredByDate} className="date-filter-btn" href="">{self.trimDate(post.date)}</a></time>
             {post.terms.post_tag.map(function(tag) {
+              isCurrentTag = tag.name === currentTag ? true : false;
               return(
-                <button key={tag.name} onClick={self.getPostsFilteredByTag} className="quote-item__tag">{tag.name}</button>
+                <button key={tag.name} onClick={self.getPostsFilteredByTag} disabled={isCurrentTag} className={cx({'current': isCurrentTag, 'quote-item__tag': true})}>{tag.name}</button>
               );
             })}
           </article>

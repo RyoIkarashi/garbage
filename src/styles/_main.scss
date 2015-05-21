@@ -217,6 +217,10 @@
 		&:last-child {
 			margin-right: 0;
 		}
+		&.current {
+			background: #76a5db;
+			color: #fff;
+		}
 	}
 	#{&}__comment-button {
 		float: right;
