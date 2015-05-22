@@ -78,8 +78,12 @@ module.exports = React.createClass({
     }));
   },
 
+  _backToTopBtn(e) {
+    e.preventDefault();
+    $("html,body").animate({scrollTop:0},"slow");
+  },
+
   componentDidMount() {
-    $('#menu-toggle', this.getDOMNode()).on('click', this._onClick);
     this.autoHideStickyHeader();
   },
 
@@ -87,12 +91,12 @@ module.exports = React.createClass({
     return (
       <header className="header clearfix" role="banner">
         <div className="header__inner">
-          <a id="menu-toggle" href="">
+          <a onClick={this._onClick} id="menu-toggle" href="">
             <span className="menu-toggle-line"></span>
             <span className="menu-toggle-line"></span>
             <span className="menu-toggle-line"></span>
           </a>
-          <div href="" className="header__back-to-top hidden">△</div>
+          <div onClick={this._backToTopBtn} className="header__back-to-top">△</div>
         </div>
       </header>
     );

@@ -20,6 +20,23 @@ module.exports = React.createClass({
     return post_date.substr(0, post_date.indexOf('T')).replace(/-/g, '.');
   },
 
+  autoHideBackToTopBtn() {
+    var $gallery = $('.quotes-gallery');
+    var $header  = $('header');
+    var $footer  = $('footer');
+    var gh = $gallery.outerHeight();
+    var hh = $header.outerHeight();
+    var fh = $footer.outerHeight();
+    var wh = $(window).height();
+    gh = gh - (hh + fh);
+
+    if(gh <= wh) {
+      $('.header__back-to-top').addClass('hidden');
+    } else {
+      $('.header__back-to-top').removeClass('hidden');
+    }
+  },
+
   getPostsFilteredByTag(e) {
     e.preventDefault();
     Actions.filterByTag($(e.target).text());
@@ -70,6 +87,7 @@ module.exports = React.createClass({
 
   componentDidMount() {
     $('.overlay', this.getDOMNode()).on('click', this.switchActive);
+    this.autoHideBackToTopBtn();
   },
 
   componentWillReceiveProps() {
@@ -77,10 +95,8 @@ module.exports = React.createClass({
     $(window).on('scroll', this._onScroll);
   },
 
-  componentWillUnmount() {
-  },
-
   componentDidUpdate() {
+    this.autoHideBackToTopBtn();
     $('.quote-item__img-wrapper', this.getDOMNode()).colorbox({
       rel: 'gal',
       maxWidth: "90%",
