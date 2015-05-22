@@ -8,7 +8,7 @@
   <meta property="og:title" content="Garbage -A real garbage collection in my life-" />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="http://garbage.ryoikarashi.com" />
-  <meta property="og:image" content="http://garbage.ryoikarashi.com/assets/og-image.jpg" />
+  <meta property="og:image" content="http://garbage.ryoikarashi.com/assets/og-image.png" />
   <meta property="og:site_name" content="Garbage" />
   <meta property="og:description" content="This website is just filled with lots of bright memories in my life even if they seem to be trivial and worthless to you :)" />
 
@@ -17,7 +17,7 @@
   <meta name="twitter:creator" content="@ryo_ikarashi">
   <meta name="twitter:description" content="This website is just filled with lots of bright memories in my life even if they seem to be trivial and worthless to you :)">
   <meta name="twitter:url" content="http://garbage.ryoikarashi.com">
-  <meta name="twitter:image" content="/assets/og-image.jpg">
+  <meta name="twitter:image" content="http://garbage.ryoikarashi.com/assets/og-image.png">
   <meta property="fb:app_id" content="1586852461591160" />
   <meta property="fb:admins" content="100002542111748">
   <meta property="article:publisher" content="https://www.facebook.com/ryo.ikarashi.5" />
