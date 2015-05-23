@@ -1,6 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+<!--
+
+
+
+                   ___           ___           ___                         ___           ___           ___
+                  /  /\         /  /\         /  /\         _____         /  /\         /  /\         /  /\
+                 /  /:/_       /  /::\       /  /::\       /  /::\       /  /::\       /  /:/_       /  /:/_
+                /  /:/ /\     /  /:/\:\     /  /:/\:\     /  /:/\:\     /  /:/\:\     /  /:/ /\     /  /:/ /\
+               /  /:/_/::\   /  /:/~/::\   /  /:/~/:/    /  /:/~/::\   /  /:/~/::\   /  /:/_/::\   /  /:/ /:/_
+              /__/:/__\/\:\ /__/:/ /:/\:\ /__/:/ /:/___ /__/:/ /:/\:| /__/:/ /:/\:\ /__/:/__\/\:\ /__/:/ /:/ /\
+              \  \:\ /~~/:/ \  \:\/:/__\/ \  \:\/:::::/ \  \:\/:/~/:/ \  \:\/:/__\/ \  \:\ /~~/:/ \  \:\/:/ /:/
+               \  \:\  /:/   \  \::/       \  \::/~~~~   \  \::/ /:/   \  \::/       \  \:\  /:/   \  \::/ /:/
+                \  \:\/:/     \  \:\        \  \:\        \  \:\/:/     \  \:\        \  \:\/:/     \  \:\/:/
+                 \  \::/       \  \:\        \  \:\        \  \::/       \  \:\        \  \::/       \  \::/
+                  \__\/         \__\/         \__\/         \__\/         \__\/         \__\/         \__\/
+
+
+
+-->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="This website is just filled with lots of bright memories in my life even if they seem to be trivial and worthless to you :)">
