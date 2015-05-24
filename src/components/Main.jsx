@@ -5,6 +5,7 @@ var Reflux = require('reflux');
 var Actions = require('./Actions');
 
 var $ = require('jquery');
+require('jquery');
 var _ = require('underscore');
 require('jquery-colorbox');
 var MobileDetect = require('mobile-detect');
