@@ -106,7 +106,7 @@ module.exports = React.createClass({
   },
 
   getThumbnail(photo_url) {
-    var THUMB_SIZE = "150x150";
+    var THUMB_SIZE = "400x400";
     if(photo_url) {
       var photo = photo_url;
       var photo_name = photo.slice(0, -4);
