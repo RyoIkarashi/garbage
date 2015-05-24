@@ -18,6 +18,7 @@ module.exports = Reflux.createStore({
       tags: [],
       active: false,
       loading: false,
+      loaded: false,
       currentTag: '',
       currentPage: 1,
       isFiltered: false,
@@ -30,6 +31,7 @@ module.exports = Reflux.createStore({
 
 // Methods involved in each action
   onFilterByTag(tag) {
+    this._setLoadedFalse();
     var self = this;
 
     // Assign new value to each state
@@ -44,12 +46,13 @@ module.exports = Reflux.createStore({
     var data = {'filter[category_name]': 'garbage', 'filter[tag]': tag};
     $.getJSON('/?json_route=/posts', data).done(function(result){
       self.newPosts(result);
+      self._setLoadedTrue();
       self.updateList();
     });
   },
 
   onFilterByDate(date) {
-
+    this._setLoadedFalse();
     var self = this;
 
     var year = date.substr(0, 4);
@@ -82,11 +85,13 @@ module.exports = Reflux.createStore({
     $.getJSON('/?json_route=/posts', data).done(function(result){
       self.list.loading = !result.length;
       self.newPosts(result);
+      self._setLoadedTrue();
       self.updateList();
     });
   },
 
   onShowAll() {
+    this._setLoadedFalse();
     var self = this;
 
     // Assign new value to each state
@@ -103,12 +108,13 @@ module.exports = Reflux.createStore({
     var data = {'filter[category_name]': 'garbage'};
     $.getJSON('/?json_route=/posts', data).done(function(result) {
       self.newPosts(result);
+      self._setLoadedTrue();
       self.updateList();
     });
   },
 
   onShowMorePosts() {
-
+    this._setLoadedFalse();
     var self = this;
 
     // Assign new value to each state
@@ -128,11 +134,13 @@ module.exports = Reflux.createStore({
       self.list.loading = !result.length;
       self.list.posts = self.list.posts.concat(result);
       self.newPosts(self.list.posts);
+      self._setLoadedTrue();
       self.updateList();
     });
   },
 
   onSearchPosts(input) {
+    this._setLoadedFalse();
     var self = this;
 
     // Assign new value to each state
@@ -155,6 +163,7 @@ module.exports = Reflux.createStore({
     $.getJSON('/?json_route=/posts', data).done(function(result) {
       self.list.loading = !result.length;
       self.newPosts(result);
+      self._setLoadedTrue();
       self.updateList();
     });
   },
@@ -175,17 +184,20 @@ module.exports = Reflux.createStore({
     });
     var getAllTags = this._getAllTags();
     $.when(getInitialPosts, getAllTags).done(function(){
+      self.list.loaded = true;
       self.updateList();
     });
   },
 
   _getAllTags() {
+    this._setLoadedFalse();
     var self = this;
     var data = {
       'filter[category_name]': 'garbage',
       'filter[posts_per_page]': -1
     };
     $.getJSON('/?json_route=/posts', data).done(function(result) {
+      self._setLoadedTrue();
       self.newTags(self._getTags(result));
     });
   },
@@ -207,6 +219,14 @@ module.exports = Reflux.createStore({
 
   _backToTop() {
     $("html,body").animate({scrollTop:0},"slow");
+  },
+
+  _setLoadedTrue() {
+    this.list.loaded = true;
+  },
+
+  _setLoadedFalse() {
+    this.list.loaded = false;
   },
 
 

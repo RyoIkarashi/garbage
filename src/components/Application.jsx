@@ -3,6 +3,7 @@ var Route = require('react-router');
 var Reflux = require('reflux');
 var $ = require('jquery');
 var DocumentTitle = require('react-document-title');
+var Loader = require('react-loader');
 
 var Actions = require('./Actions');
 var postListStore = require('./Store');
@@ -23,7 +24,9 @@ module.exports = React.createClass({
         <div>
           <Header />
           <Aside tags={this.state.list.tags} isFiltered={this.state.list.isFiltered} currentTag={this.state.list.currentTag} />
-          <Main list={this.state.list} />
+          <Loader loaded={this.state.list.loaded}>
+            <Main list={this.state.list} />
+          </Loader>
           <Footer />
         </div>
       </DocumentTitle>
