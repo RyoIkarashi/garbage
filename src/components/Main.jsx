@@ -119,6 +119,12 @@ module.exports = React.createClass({
 
   componentDidMount() {
     $('.overlay', this.getDOMNode()).on('click', this.switchActive);
+    $('.quote-item__img-wrapper', this.getDOMNode()).colorbox({
+      rel: 'gal',
+      maxWidth: "90%",
+      maxHeight: "90%",
+      opacity: 0.7
+    });
     this.autoHideBackToTopBtn();
   },
 
