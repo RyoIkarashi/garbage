@@ -5,9 +5,10 @@ var Reflux = require('reflux');
 var Actions = require('./Actions');
 
 var $ = require('jquery');
-require('jquery');
 var _ = require('underscore');
 require('jquery-colorbox');
+var MobileDetect = require('mobile-detect');
+var isMobile = !!new MobileDetect(navigator.userAgent).mobile();
 
 var MasonryMixin = require('react-masonry-mixin');
 var masonryOptions = { transitionDuration: 300 };
@@ -63,8 +64,11 @@ module.exports = React.createClass({
 
   _onScroll() {
 
-    if (!this.props.list.loading && this.props.list.posts.length > 0) {
+    if(isMobile) {
+      this._setFocus();
+    }
 
+    if (!this.props.list.loading && this.props.list.posts.length > 0) {
       var win = $(window).height();
       var doc = $(document.body).outerHeight();
       var bottom = doc - win - $(window).scrollTop();
@@ -74,8 +78,35 @@ module.exports = React.createClass({
     }
   },
 
+  _setFocus() {
+      var win = $(window).height();
+      var doc = $(document.body).outerHeight();
+      if (doc <= win) return;
+      var p = $(window).scrollTop() / (doc - win);
+      var y0 = 0;
+      var y1 = $(window).height() - 220;
+      var yy = y0 + (y1 - y0) * p;
+      var el = $(document.elementFromPoint(window.innerWidth / 2, yy));
+      var post = null;
+      while (el.length && !innerFigure) {
+        el = el.parent();
+        if (el.hasClass('quote-item')) {
+            post = el;
+        }
+      }
+      if (!post) return;
+      var innerFigure = $('.quote-item__figure', post);
+      if (innerFigure.length) {
+          if (this._current) {
+              this._current.removeClass('hover');
+          }
+          this._current = innerFigure;
+          this._current.addClass('hover');
+      }
+  },
+
   getThumbnail(photo_url) {
-    var THUMB_SIZE = "400x400";
+    var THUMB_SIZE = "150x150";
     if(photo_url) {
       var photo = photo_url;
       var photo_name = photo.slice(0, -4);
