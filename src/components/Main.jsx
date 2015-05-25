@@ -126,6 +126,8 @@ module.exports = React.createClass({
       opacity: 0.7
     });
     this.autoHideBackToTopBtn();
+    $(window).off('scroll', this._onScroll);
+    $(window).on('scroll', this._onScroll);
   },
 
   componentWillReceiveProps() {

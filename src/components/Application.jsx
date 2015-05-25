@@ -24,7 +24,7 @@ module.exports = React.createClass({
         <div>
           <Header />
           <Aside tags={this.state.list.tags} isFiltered={this.state.list.isFiltered} currentTag={this.state.list.currentTag} />
-          <Loader loaded={this.state.list.loaded}>
+          <Loader loaded={this.state.list.loaded} color="#ff8088">
             <Main list={this.state.list} />
           </Loader>
           <Footer />
