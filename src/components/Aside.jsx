@@ -48,7 +48,6 @@ module.exports = React.createClass({
     var isCurrentTag = false;
     var isFiltered = this.props.list.isFiltered;
     var isSearched = this.props.list.isSearched;
-    console.log(isSearched);
 
     var tags = this.props.list.tags.map(function(tag) {
       isCurrentTag = currentTag === tag ? true : false;
