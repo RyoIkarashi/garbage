@@ -44,11 +44,13 @@ module.exports = React.createClass({
   render() {
 
     var self = this;
-    var currentTag = this.props.currentTag;
+    var currentTag = this.props.list.currentTag;
     var isCurrentTag = false;
-    var isFiltered = this.props.isFiltered;
+    var isFiltered = this.props.list.isFiltered;
+    var isSearched = this.props.list.isSearched;
+    console.log(isSearched);
 
-    var tags = this.props.tags.map(function(tag) {
+    var tags = this.props.list.tags.map(function(tag) {
       isCurrentTag = currentTag === tag ? true : false;
       return (
         <li key={tag} className="filter-item mg-btm-xs">
@@ -66,7 +68,7 @@ module.exports = React.createClass({
             </div>
             <ul className="filter-nav__list clearfix" id="quotes-filter">
               <li className="filter-item mg-btm-xs">
-                <button onClick={this.getAllPosts} disabled={!isFiltered} className={cx({"current": !isFiltered, "filter-item__btn": true,  "btn__default": true})} id="org-filter-all">All</button>
+                <button onClick={this.getAllPosts} disabled={!isFiltered && !isSearched} className={cx({"current": !isFiltered && !isSearched, "filter-item__btn": true,  "btn__default": true})} id="org-filter-all">All</button>
               </li>
               {tags}
             </ul>
