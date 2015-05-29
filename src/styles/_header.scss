@@ -49,6 +49,33 @@
 			&:last-child { top: 35px; }
 		}
 	}
+	.header__nav {
+		display: table-cell;
+		vertical-align: middle;
+		height: 60px;
+		padding: 0 50px;
+		@at-root {
+			#{&}__item {
+				display: block;
+				float: left;
+				margin-right: 10px;
+				&:last-child { margin-right: 0; }
+				a {
+					text-decoration: none;
+					display: block;
+					padding: 10px;
+					border: 1px solid #fff;
+					color: #fff;
+					background: #ff8088;
+					transition: color .15s, background .15s;
+					&:hover, &.active {
+						color: #ff8088;
+						background: #fff;
+					}
+				}
+			}
+		}
+	}
 	.header__logo {
 		font-size: 3em;
 		color: $header-title-c;

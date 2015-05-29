@@ -102,9 +102,9 @@ module.exports = React.createClass({
             <span className="menu-toggle-line"></span>
           </a>
           <div onClick={this._backToTopBtn} className="header__back-to-top">△</div>
-          <ul className="header__nav">
+          <ul className="header__nav clearfix">
             {headerNavData.map((item) => {
-              return ( <li className="header__nav__item"><Link to={item.routerName}>{item.name}</Link></li> );
+              return ( <li className="header__nav__item clearfix"><Link to={item.routerName}>{item.name}</Link></li> );
             })}
           </ul>
         </div>

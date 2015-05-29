@@ -8,7 +8,6 @@ var Actions = require('./Actions');
 var postListStore = require('./Store');
 
 var $ = require('jquery');
-var Loader = require('react-loader');
 
 var Header = require('./Header');
 var Footer = require('./Footer');
