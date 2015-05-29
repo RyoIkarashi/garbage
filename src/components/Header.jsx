@@ -1,8 +1,12 @@
 var React = require('react/addons');
+var Router = require('react-router');
+var Link = Router.Link;
 
 var Actions = require('./Actions');
 
 var $ = require('jquery');
+
+var headerNavData = require('../data').menu;
 
 module.exports = React.createClass({
 
@@ -88,6 +92,7 @@ module.exports = React.createClass({
   },
 
   render() {
+
     return (
       <header className="header clearfix" role="banner">
         <div className="header__inner">
@@ -97,6 +102,11 @@ module.exports = React.createClass({
             <span className="menu-toggle-line"></span>
           </a>
           <div onClick={this._backToTopBtn} className="header__back-to-top">△</div>
+          <ul className="header__nav clearfix">
+            {headerNavData.map((item) => {
+              return ( <li className="header__nav__item clearfix"><Link to={item.routerName}>{item.name}</Link></li> );
+            })}
+          </ul>
         </div>
       </header>
     );
