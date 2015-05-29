@@ -2,7 +2,7 @@ var React = require('react/addons');
 var cx = React.addons.classSet;
 var Reflux = require('reflux');
 
-var Actions = require('./Actions');
+var Actions = require('../Actions');
 
 var $ = require('jquery');
 var _ = require('underscore');

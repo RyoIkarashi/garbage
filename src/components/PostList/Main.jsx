@@ -1,8 +1,11 @@
 var React = require('react/addons');
 var cx = React.addons.classSet;
 var Route = require('react-router');
+var {State} = Route;
+var DocumentTitle = require('react-document-title');
+
 var Reflux = require('reflux');
-var Actions = require('./Actions');
+var Actions = require('../Actions');
 
 var $ = require('jquery');
 require('jquery');
@@ -16,7 +19,7 @@ var masonryOptions = { transitionDuration: 300 };
 
 module.exports = React.createClass({
 
-  mixins: [MasonryMixin('masonryContainer', masonryOptions)],
+  mixins: [State, MasonryMixin('masonryContainer', masonryOptions)],
 
   trimDate(post_date) {
     return post_date.substr(0, post_date.indexOf('T')).replace(/-/g, '.');
@@ -210,11 +213,13 @@ module.exports = React.createClass({
     });
 
     return(
-        <main className="content-main pd-xs clearfix" role="main">
-          {!numOfArticles && this.props.list.isSearched ? <div className="no-results-found">No Results Found... :(</div> : ''}
-          <div ref="masonryContainer" className="quotes-gallery clearfix">{articles}</div>
-          <div className="overlay"></div>
-        </main>
+        <DocumentTitle title="garbage: Home">
+          <main className="content-main pd-xs clearfix" role="main">
+            {!numOfArticles && this.props.list.isSearched ? <div className="no-results-found">No Results Found... :(</div> : ''}
+            <div ref="masonryContainer" className="quotes-gallery clearfix">{articles}</div>
+            <div className="overlay"></div>
+          </main>
+        </DocumentTitle>
     );
   }
 });
