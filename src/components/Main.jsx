@@ -172,13 +172,13 @@ module.exports = React.createClass({
             }
             {
               post.acf.memo != ''
-              ? <p className="quote-item__memo">{post.acf.memo}</p>
+              ? <p className="quote-item__memo" dangerouslySetInnerHTML={{__html: post.acf.memo}}></p>
               : ''
             }
             {
               post.acf.quote_content != '' || post.acf.quote_author != ''
               ? <blockquote className="quote-item__blockquote mg-top-sm">
-                  <p className="quote-item__content"><em>{post.acf.quote_content}</em></p>
+                  <p className="quote-item__content"><em dangerouslySetInnerHTML={{__html: post.acf.quote_content}}></em></p>
                   <footer className="quote-item__info pd-top-n-btm-sm">
                     <cite>
                       <span className="quote-item__name">{post.acf.quote_author}</span>
