@@ -7,7 +7,7 @@ module.exports = React.createClass({
   },
 
   componentDidMount() {
-    // this.interval = setInterval(this.redirectToHP, 5000);
+    this.interval = setInterval(this.redirectToHP, 5000);
   },
 
   componentWillUnmount() {
