@@ -1,16 +1,15 @@
 var React = require('react');
 var Route = require('react-router');
+var {RouteHandler} = Route;
 var Reflux = require('reflux');
 var $ = require('jquery');
 var DocumentTitle = require('react-document-title');
-var Loader = require('react-loader');
 
 var Actions = require('./Actions');
 var postListStore = require('./Store');
 
 var Header = require('./Header');
 var Aside  = require('./Aside');
-var Main = require('./Main');
 var Footer = require('./Footer');
 
 module.exports = React.createClass({
@@ -24,9 +23,7 @@ module.exports = React.createClass({
         <div>
           <Header />
           <Aside list={this.state.list} />
-          <Loader loaded={this.state.list.loaded} color="#ff8088">
-            <Main list={this.state.list} />
-          </Loader>
+          <RouteHandler {...this.state} />
           <Footer />
         </div>
       </DocumentTitle>

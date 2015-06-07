@@ -3,9 +3,13 @@ var Router = require('react-router');
 var {Route, DefaultRoute, NotFoundRoute} = Router;
 
 var Application = require('./components/Application');
+var PostList = require('./components/PostList');
+var NotFound = require('./components/NotFound');
 
 var routes = (
   <Route name="Application" path="/" handler={Application}>
+    <DefaultRoute name="Root" handler={PostList} />
+    <NotFoundRoute handler={NotFound} />
   </Route>
 );
 
