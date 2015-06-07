@@ -7,8 +7,8 @@ var PostList = require('./components/PostList');
 var NotFound = require('./components/NotFound');
 
 var routes = (
-  <Route name="Application" path="/" handler={Application}>
-    <DefaultRoute name="Root" handler={PostList} />
+  <Route name="application" path="/" handler={Application}>
+    <DefaultRoute name="root" handler={PostList} />
     <NotFoundRoute handler={NotFound} />
   </Route>
 );
