@@ -44,7 +44,7 @@ module.exports = Reflux.createStore({
     this._backToTop();
 
     var data = {'filter[category_name]': 'garbage', 'filter[tag]': tag};
-    $.getJSON('/?json_route=/posts', data).done(function(result){
+    $.getJSON('/wp-json/posts', data).done(function(result){
       self.newPosts(result);
       self._setLoadedTrue();
       self.updateList();
@@ -82,7 +82,7 @@ module.exports = Reflux.createStore({
       'filter[date_query][day]': day
     };
 
-    $.getJSON('/?json_route=/posts', data).done(function(result){
+    $.getJSON('/wp-json/posts', data).done(function(result){
       self.list.loading = !result.length;
       self.newPosts(result);
       self._setLoadedTrue();
@@ -106,7 +106,7 @@ module.exports = Reflux.createStore({
     this._backToTop();
 
     var data = {'filter[category_name]': 'garbage'};
-    $.getJSON('/?json_route=/posts', data).done(function(result) {
+    $.getJSON('/wp-json/posts', data).done(function(result) {
       self.newPosts(result);
       self._setLoadedTrue();
       self.updateList();
@@ -130,7 +130,7 @@ module.exports = Reflux.createStore({
     if(this.list.currentInput != '') { $.extend(data, {'filter[s]': this.list.currentInput}); }
     if(Object.keys(this.list.currentFilteredDate).length) { $.extend(data, this.list.currentFilteredDate); }
 
-    return $.getJSON('/?json_route=/posts', data).done(function(result) {
+    return $.getJSON('/wp-json/posts', data).done(function(result) {
       self.list.loading = !result.length;
       self.list.posts = self.list.posts.concat(result);
       self.newPosts(self.list.posts);
@@ -160,7 +160,7 @@ module.exports = Reflux.createStore({
       'filter[posts_per_page]': 10,
       'filter[s]': input
     };
-    $.getJSON('/?json_route=/posts', data).done(function(result) {
+    $.getJSON('/wp-json/posts', data).done(function(result) {
       self.list.loading = !result.length;
       self.newPosts(result);
       self._setLoadedTrue();
@@ -178,7 +178,7 @@ module.exports = Reflux.createStore({
   _fetchInitialData() {
     var self = this;
     var data = {'filter[category_name]': 'garbage'};
-    var getInitialPosts = $.getJSON('/?json_route=/posts', data).done(function(result) {
+    var getInitialPosts = $.getJSON('/wp-json/posts', data).done(function(result) {
       self.newPosts(result);
       self.newTags(self._getTags(result));
     });
@@ -196,7 +196,7 @@ module.exports = Reflux.createStore({
       'filter[category_name]': 'garbage',
       'filter[posts_per_page]': -1
     };
-    $.getJSON('/?json_route=/posts', data).done(function(result) {
+    $.getJSON('/wp-json/posts', data).done(function(result) {
       self._setLoadedTrue();
       self.newTags(self._getTags(result));
     });
