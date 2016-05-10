@@ -2,4 +2,9 @@ ryo--garbage
 node_modules
 .sass-cache
 npm-debug.log
-dist/assets/
+dist/assets/bundle.js
+dist/assets/bundle.js.map
+dist/assets/main.css
+dist/assets/iehack.js
+dist/assets/styles.css
+
