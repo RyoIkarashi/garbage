@@ -28,11 +28,10 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel',
-        query: { presets: ['react', 'es2015', 'react-hmre'] }
+        query: { presets: ['react', 'es2015', 'stage-2', 'react-hmre'] }
       },
       {
         test: /\.(scss|sass)$/,
-        // loaders: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
         loader: ExtractTextPlugin.extract('style-loader', ['css-loader', 'postcss-loader', 'sass-loader'])
       },
       {

@@ -21,6 +21,7 @@
     "__dirname": true
   },
   "rules": {
+    "no-console": 0,
     "react/jsx-uses-vars": 1,
     "linebreak-style": [
       "error",
