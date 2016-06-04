@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import MemoItem from '../components/MemoItem';
-import { filterCategory, filterTag, filterSearch, fetchPostsIfNeeded } from '../actions';
+import { queryFilterCategory, queryFilterTag, queryFilterSearch, fetchPostsIfNeeded } from '../actions';
 
 class MemoList extends Component {
 
@@ -10,18 +10,19 @@ class MemoList extends Component {
   }
 
   setFilterByQuery() {
-    const { dispatch, location } = this.props;
+    const { dispatch, location, pagination, queryFilter } = this.props;
     const { query } = location;
     Object.keys(query).forEach(key => {
+
       switch(key) {
         case 'category':
-          dispatch(filterCategory(query[key]));
+          dispatch(queryFilterCategory(query[key]));
           break;
         case 'tag':
-          dispatch(filterTag(query[key]));
+          dispatch(queryFilterTag(query[key]));
           break;
         case 'search':
-          dispatch(filterSearch(query[key]));
+          dispatch(queryFilterSearch(query[key]));
           break;
         default:
           break;
@@ -29,20 +30,20 @@ class MemoList extends Component {
     });
 
     if(!(query.hasOwnProperty('category') || query.hasOwnProperty('tag') || query.hasOwnProperty('search'))) {
-      dispatch(fetchPostsIfNeeded(this.props.filter));
+      dispatch(fetchPostsIfNeeded(queryFilter, pagination));
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    const { dispatch } = nextProps;
-    if(nextProps.filter !== this.props.filter) {
-      dispatch(fetchPostsIfNeeded(nextProps.filter));
+    const { dispatch, queryFilter, pagination } = nextProps;
+    if(queryFilter !== this.props.queryFilter) {
+      dispatch(fetchPostsIfNeeded(queryFilter, pagination));
     }
   }
 
   render() {
-    const { postsByFilter } = this.props;
-    const { isFetching, items } = postsByFilter;
+    const { allPosts } = this.props;
+    const { isFetching, items } = allPosts;
 
     const isEmpty = items.length === 0;
 
@@ -59,11 +60,12 @@ class MemoList extends Component {
 }
 
 function mapStateToProps(state) {
-  const { filter, postsByFilter } = state;
+  const { queryFilter, allPosts, pagination } = state;
 
   return {
-    filter,
-    postsByFilter
+    queryFilter,
+    allPosts,
+    pagination
   };
 }
 

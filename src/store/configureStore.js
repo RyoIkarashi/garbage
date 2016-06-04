@@ -6,16 +6,18 @@ import createLogger from 'redux-logger';
 import rootReducer from '../reducers';
 import DevTools from '../containers/DevTools'
 
-const configureStore = (initialState) => {
+const configureStore = (initialState = {}) => {
 
-  const store = createStore(
-    rootReducer,
-    initialState,
-    compose(
-      applyMiddleware(routerMiddleware(browserHistory), thunk, createLogger()),
-      DevTools.instrument()
-    )
+  const enhancer = compose(
+    applyMiddleware(
+      thunk,
+      routerMiddleware(browserHistory),
+      createLogger()
+    ),
+    DevTools.instrument()
   );
+
+  const store = createStore(rootReducer, initialState, enhancer);
 
   if (module.hot) {
     module.hot.accept('../reducers', () => {

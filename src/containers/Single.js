@@ -1,38 +1,26 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { filterSlug, fetchSinglePost } from '../actions';
+import { fetchSinglePost } from '../actions';
 
 class Single extends Component {
 
   componentDidMount() {
     const { dispatch, params } = this.props;
-    dispatch(filterSlug(params.slug));
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const { dispatch, filter } = nextProps;
-    if (nextProps.filter !== this.props.filter) {
-      dispatch(fetchSinglePost(filter));
-    }
+      dispatch(fetchSinglePost(params.slug));
   }
 
   render() {
-    const { postsByFilter } = this.props;
-    const { isFetching, items } = postsByFilter;
-
-    const isEmpty = items.length === 0;
+    const { isFetching, item } = this.props;
+    const isEmpty = Object.keys(item).length === 0;
 
     return (
-
       <div>
         {isEmpty
           ? (isFetching ? <h2>Loading...</h2> : <h2>Empty.</h2>)
-          : items.map(item =>
-            <article key={item.id}>
+          :  <article>
               <h1>{item.title.rendered}</h1>
               <div dangerouslySetInnerHTML={{__html: item.content.rendered}}></div>
             </article>
-          )
         }
       </div>
     )
@@ -40,9 +28,13 @@ class Single extends Component {
 }
 
 function mapStateToProps(state, ownProps) {
+  const { single } = state;
+  const { slug } = ownProps.params;
+  const { isFetching, item } = single[slug] || { isFetching: true, item: {} };
+
   return {
-    ...state,
-    ...ownProps
+    isFetching,
+    item
   };
 }
 
