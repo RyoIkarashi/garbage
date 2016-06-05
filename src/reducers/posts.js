@@ -12,7 +12,6 @@ const posts = (state = {}, action) => {
         isFetching: true
       };
     case RECEIVE_POSTS:
-      console.log(action.posts);
       return {
         ...state,
         isFetching: false,
@@ -30,9 +29,6 @@ const posts = (state = {}, action) => {
 
 const allPosts = (state = {
   isFetching: false,
-  tags: [],
-  categories: [],
-  search: [],
   items: []
 }, action) => {
   switch (action.type) {

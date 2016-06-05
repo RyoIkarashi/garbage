@@ -6,7 +6,7 @@ class Single extends Component {
 
   componentDidMount() {
     const { dispatch, params } = this.props;
-      dispatch(fetchSinglePost(params.slug));
+    dispatch(fetchSinglePost(params.slug));
   }
 
   render() {
