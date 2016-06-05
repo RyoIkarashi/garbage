@@ -1,11 +1,11 @@
 import { Component } from 'react';
-import TagFilter from '../containers/TagFilter';
+import QueryFilter from '../containers/QueryFilter';
 
 export default class Aside extends Component {
   render() {
     return (
       <aside>
-        <TagFilter />
+        <QueryFilter {...this.props} />
       </aside>
     )
   }
