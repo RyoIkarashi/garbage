@@ -24,8 +24,6 @@ export default function paginate({ types, mapActionToKey }) {
     ids: []
   }, action) {
 
-    console.log("ACTION: ", action);
-
     switch (action.type) {
       case requestType:
         return merge({}, state, {

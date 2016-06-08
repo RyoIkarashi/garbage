@@ -14,16 +14,15 @@ import {
   POSTS_FAILURE
 } from '../constants';
 
-// Extracts the next page URL from Github API response.
-function getNextPageUrl(response) {
-  const link = response.headers.get('link')
-  console.log('link', link);
+function getNextPageUrl(res) {
+  const link = res.headers.get('link')
+
   if (!link) {
     return null
   }
 
   const nextLink = link.split(',').find(s => s.indexOf('rel="next"') > -1)
-  console.log('NEXTLINK', nextLink);
+
   if (!nextLink) {
     return null
   }
