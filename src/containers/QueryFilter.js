@@ -1,39 +1,60 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import { queryFilterTag, queryFilterCategory, queryFilterSearch, fetchPostsIfNeeded } from '../actions';
 
 export default class TagFilter extends Component {
 
-  componentWillReceiveProps(nextProps) {
-    const { dispatch, queryFilter, pagination } = nextProps;
-    if(queryFilter !== this.props.queryFilter) {
-      dispatch(fetchPostsIfNeeded(queryFilter, pagination));
+  getFilteredPosts(categoryInput, tagInput, searchInput) {
+
+    const { dispatch, loadPosts } = this.props;
+
+    let fullUrl = '';
+    let params = {};
+
+    // if there is no input, then show all posts again, if not, then show posts filtered by queries
+    if (searchInput.value   !== '' ||
+        tagInput.value      !== '' ||
+        categoryInput.value !== '')
+    {
+      if (categoryInput.value !== '') {
+        fullUrl += `/category/${categoryInput.value}`;
+        params.category = categoryInput.value;
+      }
+
+      if (tagInput.value !== '') {
+        fullUrl += `/tag/${tagInput.value}`;
+        params.tag = tagInput.value;
+      }
+
+      if (searchInput.value !== '') {
+        fullUrl += `/search/${searchInput.value}`;
+        params.search = searchInput.value;
+      }
+
+      dispatch(push(fullUrl));
+      loadPosts(fullUrl, params);
+    } else {
+      dispatch(push('/'))
+      loadPosts('/', params);
     }
+
+    // clear inputs
+    categoryInput.value = '';
+    tagInput.value = '';
+    searchInput.value = '';
   }
 
   render() {
-    const { dispatch } = this.props;
-    let searchInput;
-    let tagInput;
+
     let categoryInput;
+    let tagInput;
+    let searchInput;
 
     return (
       <div>
         <form onSubmit={e => {
           e.preventDefault();
-
-          // if there is no input, then show all posts again, if not, then show posts filtered by queries
-          (!searchInput.value.trim() && !tagInput.value.trim() && !categoryInput.value.trim())
-            ? dispatch(push('/'))
-            : dispatch(push(`/?category=${categoryInput.value}&tag=${tagInput.value}&search=${searchInput.value}`));
-              dispatch(queryFilterTag(tagInput.value));
-              dispatch(queryFilterCategory(categoryInput.value));
-              dispatch(queryFilterSearch(searchInput.value));
-
-          categoryInput.value = '';
-          tagInput.value = '';
-          searchInput.value = '';
+          this.getFilteredPosts(categoryInput, tagInput, searchInput);
         }}>
           <input type="text" placeholder="category" ref={node => {
             categoryInput = node;

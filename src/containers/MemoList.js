@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import MemoItem from '../components/MemoItem';
+import Aside from '../components/Aside';
 import { loadPosts } from '../actions';
 import Paginator from './Paginator';
 
@@ -30,6 +31,7 @@ class MemoList extends Component {
 
     return (
       <div>
+        <Aside {...this.props} />
         { allPosts.map(item => <MemoItem key={item.id} item={item} />) }
         {!nextPageUrl ? '' : <Paginator {...this.props} /> }
       </div>
