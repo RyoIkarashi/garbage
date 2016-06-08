@@ -22,7 +22,7 @@ export default class TagFilter extends Component {
       <div>
         <form onSubmit={e => {
           e.preventDefault();
-          
+
           // if there is no input, then show all posts again, if not, then show posts filtered by queries
           (!searchInput.value.trim() && !tagInput.value.trim() && !categoryInput.value.trim())
             ? dispatch(push('/'))

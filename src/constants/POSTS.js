@@ -1,3 +1,3 @@
-export const RECEIVE_POSTS = 'RECEIVE_POSTS';
-export const REQUEST_POSTS = 'REQUEST_POSTS';
-export const CLEAR_POSTS = 'CLEAR_POSTS';
+export const POSTS_REQUEST = 'POSTS_REQUEST';
+export const POSTS_SUCCESS = 'POSTS_SUCCESS';
+export const POSTS_FAILURE = 'POSTS_FAILURE';

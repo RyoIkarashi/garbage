@@ -1,72 +1,57 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import MemoItem from '../components/MemoItem';
-import { queryFilterCategory, queryFilterTag, queryFilterSearch, fetchPostsIfNeeded } from '../actions';
+import { loadPosts } from '../actions';
 
 class MemoList extends Component {
 
-  componentDidMount() {
-    this.setFilterByQuery();
+  loadPosts() {
+    const { filter, loadPosts, params } = this.props;
+    loadPosts(filter, params);
   }
 
-  setFilterByQuery() {
-    const { dispatch, location, pagination, queryFilter } = this.props;
-    const { query } = location;
-    Object.keys(query).forEach(key => {
-
-      switch(key) {
-        case 'category':
-          dispatch(queryFilterCategory(query[key]));
-          break;
-        case 'tag':
-          dispatch(queryFilterTag(query[key]));
-          break;
-        case 'search':
-          dispatch(queryFilterSearch(query[key]));
-          break;
-        default:
-          break;
-      }
-    });
-
-    if(!(query.hasOwnProperty('category') || query.hasOwnProperty('tag') || query.hasOwnProperty('search'))) {
-      dispatch(fetchPostsIfNeeded(queryFilter, pagination));
-    }
+  componentWillMount() {
+    this.loadPosts();
   }
 
   componentWillReceiveProps(nextProps) {
-    const { dispatch, queryFilter, pagination } = nextProps;
-    if(queryFilter !== this.props.queryFilter) {
-      dispatch(fetchPostsIfNeeded(queryFilter, pagination));
+    if (nextProps.filter !== this.props.filter) {
+      this.loadPosts(nextProps.filter, nextProps.params);
     }
   }
 
   render() {
     const { allPosts } = this.props;
-    const { isFetching, items } = allPosts;
 
-    const isEmpty = items.length === 0;
+    if(!allPosts.length) {
+      return <h2>Loading...</h2>
+    }
 
     return (
-
       <div>
-        {isEmpty
-          ? (isFetching ? <h2>Loading...</h2> : <h2>Empty.</h2>)
-          : items.map(item => <MemoItem key={item.id} item={item} />)
-        }
+        { allPosts.map(item => <MemoItem key={item.id} item={item} />) }
       </div>
     )
   }
 }
 
-function mapStateToProps(state) {
-  const { queryFilter, allPosts, pagination } = state;
+function mapStateToProps(state, ownProps) {
+
+  const filter = ownProps.location.pathname;
+
+  const {
+    pagination: { postsByFilter },
+    entities: { posts }
+  } = state;
+
+  const postsPagination = postsByFilter[filter] || { ids: [] };
+  const allPosts = postsPagination.ids.map(id => posts[id]);
 
   return {
-    queryFilter,
     allPosts,
-    pagination
+    filter,
+    postsPagination
   };
 }
 
-export default connect(mapStateToProps)(MemoList);
+export default connect(mapStateToProps, { loadPosts })(MemoList);

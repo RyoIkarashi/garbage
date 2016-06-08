@@ -1,50 +1,60 @@
-import fetch from 'isomorphic-fetch';
-const BASE_URL = '/wp-json/wp/v2';
+import { Schema, arrayOf, normalize } from 'normalizr';
+import { CALL_API, getJSON } from 'redux-api-middleware';
+
+const API_ROOT = '/wp-json/wp/v2';
+
+const postsSchema = new Schema('posts', {
+  idAttribute: post => post.slug
+});
 
 import {
-  REQUEST_POSTS,
-  RECEIVE_POSTS
+  POSTS_REQUEST,
+  POSTS_SUCCESS,
+  POSTS_FAILURE
 } from '../constants';
 
-// request posts
-const requestPosts = (queryFilter, pagination) => ({
-  type: REQUEST_POSTS,
-  queryFilter,
-  pagination
-});
-
-// receive posts
-const receivePosts = (queryFilter, json) => ({
-  type: RECEIVE_POSTS,
-  queryFilter,
-  posts: json.map(item => item)
-});
-
-// fetch posts
-const fetchPosts = (queryFilter, pagination) => {
-  return (dispatch, getState) => {
-    dispatch(requestPosts(queryFilter, pagination));
-    return fetch(`${BASE_URL}/posts?page=${pagination.pageNum}&filter[category_name]=${queryFilter.category}&filter[tag]=${queryFilter.tag}&filter[s]=${queryFilter.search}`)
-      .then(response => response.json())
-      .then(json => {
-        if (pagination.pageNum > 1) {
-          json = json.concat(getState().allPosts.items);
-        }
-        dispatch(receivePosts(queryFilter, json));
-      });
-  };
-};
-
-const shouldFetchPosts = (state) => {
-  const posts = state.posts;
-  if (!posts) return true;
-  if (posts.isFetching) return false;
-};
-
-export const fetchPostsIfNeeded = (queryFilter, pagination) => {
-  return (dispatch, getState) => {
-    if (shouldFetchPosts(getState())) {
-      return dispatch(fetchPosts(queryFilter, pagination));
+const fetchPosts = (filter, nextPageUrl) => {
+  return {
+    [CALL_API]: {
+      endpoint: nextPageUrl,
+      method: 'GET',
+      types: [
+        {
+          type: POSTS_REQUEST,
+          meta: { filter }
+        },
+        {
+          type: POSTS_SUCCESS,
+          payload: (action, state, res) => {
+            return getJSON(res).then((json) => {
+              return normalize(json, arrayOf(postsSchema));
+            });
+          },
+          meta: { filter }
+        },
+        POSTS_FAILURE
+      ]
     }
   };
-};
+}
+
+export const loadPosts = (filter, params, nextPage) => {
+
+  return (dispatch, getState) => {
+
+    const { category = '' } = params;
+    const { tag = '' } = params;
+    const { search = '' } = params;
+
+    const {
+      nextPageUrl = `${API_ROOT}/posts?filter[category_name]=${category}&filter[tag]=${tag}&filter[s]=${search}`,
+      pageCount = 0
+    } = getState().pagination.postsByFilter[filter] || {};
+
+    if (pageCount > 0 && !nextPage) {
+      return null;
+    }
+
+    return dispatch(fetchPosts(filter, nextPageUrl));
+  };
+}
