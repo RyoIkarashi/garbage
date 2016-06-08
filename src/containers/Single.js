@@ -1,18 +1,23 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchSinglePost } from '../actions';
+import { loadPosts } from '../actions';
 
 class Single extends Component {
 
   componentDidMount() {
-    const { dispatch, params } = this.props;
-    dispatch(fetchSinglePost(params.slug));
+    const { filter, params, loadPosts } = this.props;
+    loadPosts(filter, params);
   }
 
   render() {
-    const { isFetching, item } = this.props;
-    const isEmpty = Object.keys(item).length === 0;
+    const {
+      allPosts,
+      postsPagination: { isFetching }
+    } = this.props;
 
+    const isEmpty = allPosts.length === 0;
+    const item = allPosts[0];
+    
     return (
       <div>
         {isEmpty
@@ -28,14 +33,21 @@ class Single extends Component {
 }
 
 function mapStateToProps(state, ownProps) {
-  const { single } = state;
-  const { slug } = ownProps.params;
-  const { isFetching, item } = single[slug] || { isFetching: true, item: {} };
+  const filter = ownProps.location.pathname;
+
+  const {
+    pagination: { postsByFilter },
+    entities: { posts }
+  } = state;
+
+  const postsPagination = postsByFilter[filter] || { ids: [] };
+  const allPosts = postsPagination.ids.map(id => posts[id]);
 
   return {
-    isFetching,
-    item
+    allPosts,
+    filter,
+    postsPagination
   };
 }
 
-export default connect(mapStateToProps)(Single);
+export default connect(mapStateToProps, { loadPosts })(Single);

@@ -59,10 +59,10 @@ export const loadPosts = (filter, params, nextPage) => {
 
   return (dispatch, getState) => {
 
-    const { category = '', tag = '', search = '' } = params;
+    const { category = '', tag = '', search = '', slug = '' } = params;
 
     const {
-      nextPageUrl = `${API_ROOT}/posts?filter[category_name]=${category}&filter[tag]=${tag}&filter[s]=${search}`,
+      nextPageUrl = `${API_ROOT}/posts?filter[category_name]=${category}&filter[tag]=${tag}&filter[s]=${search}&filter[name]=${slug}`,
       pageCount = 0
     } = getState().pagination.postsByFilter[filter] || {};
 
