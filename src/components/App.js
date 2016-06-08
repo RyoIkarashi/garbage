@@ -1,18 +1,19 @@
 import { Component } from 'react';
-// import Header from './Header';
+import Header from './Header';
+import Footer from './Footer';
 // import Aside from './Aside';
-// import Footer from './Footer';
 
 export default class App extends Component {
   render() {
     return (
       <div>
-        {/* <Header /> */}
+        <Header />
         {/* <Aside {...this.props} /> */}
         <main>
           {this.props.children}
         </main>
-        {/* <Footer /> */}
+
+        <Footer />
       </div>
     );
   }

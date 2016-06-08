@@ -1,25 +1,33 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { nextPage } from '../actions';
+import { loadPosts } from '../actions';
 
 class Paginator extends Component {
 
-  loadMore() {
-    const { dispatch, pagination } = this.props;
-    let next = ++pagination.pageNum;
-    dispatch(nextPage(next));
+  constructor(props) {
+    super(props);
+    this.handleLoadMoreClick = this.handleLoadMoreClick.bind(this)
+  }
+
+  handleLoadMoreClick() {
+    const { loadPosts, filter, params } = this.props;
+    loadPosts(filter, params, true);
   }
 
   render() {
     return (
-      <button onClick={this.loadMore}>Load More.</button>
+      <button onClick={this.handleLoadMoreClick}>Load More.</button>
     )
   }
 }
 
-function mapStateToProps(state) {
-  const { pagination } = state;
-  return { pagination };
+function mapStateToProps(state, ownProps) {
+  const filter = ownProps.location.pathname;
+  const { params } = ownProps;
+  return {
+    filter,
+    params
+  };
 }
 
-export default connect(mapStateToProps)(Paginator);
+export default connect(mapStateToProps, { loadPosts })(Paginator);

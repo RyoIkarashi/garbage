@@ -1,3 +1,4 @@
+import merge from 'lodash/merge';
 import { Schema, arrayOf, normalize } from 'normalizr';
 import { CALL_API, getJSON } from 'redux-api-middleware';
 
@@ -13,6 +14,23 @@ import {
   POSTS_FAILURE
 } from '../constants';
 
+// Extracts the next page URL from Github API response.
+function getNextPageUrl(response) {
+  const link = response.headers.get('link')
+  console.log('link', link);
+  if (!link) {
+    return null
+  }
+
+  const nextLink = link.split(',').find(s => s.indexOf('rel="next"') > -1)
+  console.log('NEXTLINK', nextLink);
+  if (!nextLink) {
+    return null
+  }
+
+  return nextLink.split(';')[0].slice(1, -1)
+}
+
 const fetchPosts = (filter, nextPageUrl) => {
   return {
     [CALL_API]: {
@@ -27,10 +45,10 @@ const fetchPosts = (filter, nextPageUrl) => {
           type: POSTS_SUCCESS,
           payload: (action, state, res) => {
             return getJSON(res).then((json) => {
-              return normalize(json, arrayOf(postsSchema));
+              return merge({nextPageUrl: getNextPageUrl(res)}, normalize(json, arrayOf(postsSchema)));
             });
           },
-          meta: { filter }
+          meta: { filter, nextPageUrl }
         },
         POSTS_FAILURE
       ]
@@ -42,9 +60,7 @@ export const loadPosts = (filter, params, nextPage) => {
 
   return (dispatch, getState) => {
 
-    const { category = '' } = params;
-    const { tag = '' } = params;
-    const { search = '' } = params;
+    const { category = '', tag = '', search = '' } = params;
 
     const {
       nextPageUrl = `${API_ROOT}/posts?filter[category_name]=${category}&filter[tag]=${tag}&filter[s]=${search}`,

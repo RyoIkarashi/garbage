@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import MemoItem from '../components/MemoItem';
 import { loadPosts } from '../actions';
+import Paginator from './Paginator';
 
 class MemoList extends Component {
 
@@ -21,7 +22,7 @@ class MemoList extends Component {
   }
 
   render() {
-    const { allPosts } = this.props;
+    const { allPosts, nextPageUrl } = this.props;
 
     if(!allPosts.length) {
       return <h2>Loading...</h2>
@@ -30,6 +31,7 @@ class MemoList extends Component {
     return (
       <div>
         { allPosts.map(item => <MemoItem key={item.id} item={item} />) }
+        {!nextPageUrl ? '' : <Paginator {...this.props} /> }
       </div>
     )
   }
@@ -46,11 +48,13 @@ function mapStateToProps(state, ownProps) {
 
   const postsPagination = postsByFilter[filter] || { ids: [] };
   const allPosts = postsPagination.ids.map(id => posts[id]);
+  const { nextPageUrl } = postsPagination;
 
   return {
     allPosts,
     filter,
-    postsPagination
+    postsPagination,
+    nextPageUrl
   };
 }
 
