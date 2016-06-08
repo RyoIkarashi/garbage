@@ -23,16 +23,20 @@ class MemoList extends Component {
   }
 
   render() {
-    const { allPosts, nextPageUrl } = this.props;
-
-    if(!allPosts.length) {
-      return <h2>Loading...</h2>
-    }
+    const {
+      allPosts,
+      nextPageUrl,
+      postsPagination: { isFetching }
+    } = this.props;
 
     return (
       <div>
         <Aside {...this.props} />
-        { allPosts.map(item => <MemoItem key={item.id} item={item} />) }
+        {
+          !allPosts.length
+            ? isFetching ? <h2>Loading...</h2> : <h2>Empty</h2>
+            : allPosts.map(item => <MemoItem key={item.id} item={item} />)
+        }
         {!nextPageUrl ? '' : <Paginator {...this.props} /> }
       </div>
     )
