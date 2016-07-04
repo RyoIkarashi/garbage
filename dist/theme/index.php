@@ -4,20 +4,27 @@
 
 
 
-                   ___           ___           ___                         ___           ___           ___
-                  /  /\         /  /\         /  /\         _____         /  /\         /  /\         /  /\
-                 /  /:/_       /  /::\       /  /::\       /  /::\       /  /::\       /  /:/_       /  /:/_
-                /  /:/ /\     /  /:/\:\     /  /:/\:\     /  /:/\:\     /  /:/\:\     /  /:/ /\     /  /:/ /\
-               /  /:/_/::\   /  /:/~/::\   /  /:/~/:/    /  /:/~/::\   /  /:/~/::\   /  /:/_/::\   /  /:/ /:/_
-              /__/:/__\/\:\ /__/:/ /:/\:\ /__/:/ /:/___ /__/:/ /:/\:| /__/:/ /:/\:\ /__/:/__\/\:\ /__/:/ /:/ /\
-              \  \:\ /~~/:/ \  \:\/:/__\/ \  \:\/:::::/ \  \:\/:/~/:/ \  \:\/:/__\/ \  \:\ /~~/:/ \  \:\/:/ /:/
-               \  \:\  /:/   \  \::/       \  \::/~~~~   \  \::/ /:/   \  \::/       \  \:\  /:/   \  \::/ /:/
-                \  \:\/:/     \  \:\        \  \:\        \  \:\/:/     \  \:\        \  \:\/:/     \  \:\/:/
-                 \  \::/       \  \:\        \  \:\        \  \::/       \  \:\        \  \::/       \  \::/
-                  \__\/         \__\/         \__\/         \__\/         \__\/         \__\/         \__\/
+     ___           ___           ___           ___           ___           ___           ___
+    /  /\         /  /\         /  /\         /  /\         /  /\         /  /\         /  /\
+   /  /:/_       /  /::\       /  /::\       /  /::\       /  /::\       /  /:/_       /  /:/_
+  /  /:/ /\     /  /:/\:\     /  /:/\:\     /  /:/\:\     /  /:/\:\     /  /:/ /\     /  /:/ /\
+ /  /:/_/::\   /  /:/~/::\   /  /:/~/:/    /  /:/~/::\   /  /:/~/::\   /  /:/_/::\   /  /:/ /:/_
+/__/:/__\/\:\ /__/:/ /:/\:\ /__/:/ /:/___ /__/:/ /:/\:| /__/:/ /:/\:\ /__/:/__\/\:\ /__/:/ /:/ /\
+\  \:\ /~~/:/ \  \:\/:/__\/ \  \:\/:::::/ \  \:\/:/~/:/ \  \:\/:/__\/ \  \:\ /~~/:/ \  \:\/:/ /:/
+ \  \:\  /:/   \  \::/       \  \::/~~~~   \  \::/ /:/   \  \::/       \  \:\  /:/   \  \::/ /:/
+  \  \:\/:/     \  \:\        \  \:\        \  \:\/:/     \  \:\        \  \:\/:/     \  \:\/:/
+   \  \::/       \  \:\        \  \:\        \  \::/       \  \:\        \  \::/       \  \::/
+    \__\/         \__\/         \__\/         \__\/         \__\/         \__\/         \__\/
 
 
 
+
+-------------------------------------------------------------------------------------
+| Author      | Ryo Ikarashi                                                        |
+| Twitter     | https://twitter.com/ryo_ikarashi                                    |
+| Github      | https://github.com/RyoIkarashi                                      |
+| Description | A real garbage collection "in my life" built with React and Redux   |
+-------------------------------------------------------------------------------------
 -->
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
   <meta charset="UTF-8">
@@ -50,17 +57,14 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
   <!-- Fontawesome -->
   <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-  <!-- Stylesheets -->
-  <link href="/assets/main.css" rel="stylesheet" type="text/css"/>
-
-  <!--[if IE 8]> <script src="/assets/iehack.js"></script> <![endif]-->
+  <!-- Styles.css -->
+  <link href="/assets/styles.css" rel="stylesheet">
 
 </head>
 
 <body class="container-fluid container">
 
-  <!-- Main Script -->
-  <script type="text/javascript" src="/assets/bundle.js"></script>
+  <div id="root"></div>
 
   <!-- Google Analytics -->
   <script>
@@ -74,22 +78,25 @@
   </script>
 
   <script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '1586852461591160',
-      xfbml      : true,
-      version    : 'v2.3'
-    });
-  };
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '1586852461591160',
+        xfbml      : true,
+        version    : 'v2.3'
+      });
+    };
 
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "//connect.facebook.net/en_US/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+  </script>
+
+  <!-- Main Script -->
+  <script type="text/javascript" src="/assets/bundle.js"></script>
 
 </body>
 
