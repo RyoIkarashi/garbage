@@ -1,8 +1,6 @@
 var webpack = require('webpack');
 var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var autoprefixer = require('autoprefixer');
-var mqpacker = require('css-mqpacker');
 
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
@@ -31,8 +29,8 @@ module.exports = {
         query: { presets: ['react', 'es2015', 'stage-2', 'react-hmre'] }
       },
       {
-        test: /\.(scss|sass)$/,
-        loader: ExtractTextPlugin.extract('style-loader', ['css-loader', 'postcss-loader', 'sass-loader'])
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract('style-loader', ['css-loader', 'postcss-loader'])
       },
       {
         test: /\.(eot|woff|woff2|ttf|svg)(\?\S*)?$/,
@@ -44,14 +42,26 @@ module.exports = {
       }
     ]
   },
-  sassLoader: {
-    includePaths: [path.join(__dirname, 'src', 'styles')]
-  },
   postcss: [
-    autoprefixer({
-      browsers: ['last 2 version', 'ie >= 9']
+    // Need this setting in order to enable hot-reloading when the other css files change
+    // See: https://github.com/mxstbr/react-boilerplate/blob/master/makewebpackconfig.js#L94-L99
+    require('postcss-import')({
+      glob: true,
+      onImport: function (files) {
+          files.forEach(this.addDependency);
+      }.bind(this)
     }),
-    mqpacker()
+    require("postcss-url")(),
+    require("postcss-cssnext")(),
+    require("cssnano")(),
+    require('postcss-simple-vars')(),
+    require("postcss-pxtorem")(),
+    require("postcss-mixins")(),
+    require("postcss-extend")(),
+    require("postcss-browser-reporter")(),
+    require("postcss-reporter")(),
+    require("autoprefixer")({browsers: ['last 2 versions', 'ie >= 9']}),
+    require('css-mqpacker')()
   ],
   eslint: {
     configFile: './.eslintrc'
