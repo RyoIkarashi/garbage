@@ -22,10 +22,11 @@
 -------------------------------------------------------------------------------------
 | Author      | Ryo Ikarashi                                                        |
 | Twitter     | https://twitter.com/ryo_ikarashi                                    |
-| Github      | https://github.com/RyoIkarashi                                      |
+| Github      | https://github.com/RyoIkarashi/garbage                              |
 | Description | A real garbage collection "in my life" built with React and Redux   |
 -------------------------------------------------------------------------------------
 -->
+
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -48,17 +49,10 @@
   <meta property="fb:admins" content="100002542111748">
   <meta property="article:publisher" content="https://www.facebook.com/ryo.ikarashi.5" />
 
-
   <!-- Favicon -->
   <link rel="shortcut icon" href=""/>
-  <!-- Normalize CSS -->
-  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css">
-  <!-- Twitter Bootstrap -->
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-  <!-- Fontawesome -->
-  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   <!-- Styles.css -->
-  <link href="/assets/styles.css" rel="stylesheet">
+  <link href="/assets/main.css" rel="stylesheet">
 
 </head>
 
