@@ -31,7 +31,7 @@ module.exports = {
       {
         test: /\.css$/,
         exclude: /node_modules/,
-        loader: ExtractTextPlugin.extract('style-loader', ['css-loader', 'cssnext-loader', 'postcss-loader'])
+        loader: ExtractTextPlugin.extract('style-loader', ['css-loader?autoprefixer', 'postcss-loader', 'sass-loader'])
       },
       {
         test: /\.(eot|woff|woff2|ttf|svg)(\?\S*)?$/,
@@ -48,16 +48,14 @@ module.exports = {
       // Need this setting in order to enable hot-reloading when the other css files change
       // See: https://github.com/postcss/postcss-import#adddependencyto
       require('postcss-import')({addDependencyTo: webpack}),
-      require("postcss-cssnext")(),
-      require("postcss-url")(),
-      require("cssnano")(),
-      require('postcss-simple-vars')(),
+      require('postcss-url')(),
+      require("postcss-cssnext")({browsers: 'last 2 versions'}),
       require("postcss-pxtorem")(),
       require("postcss-mixins")(),
       require("postcss-extend")(),
+      require('css-mqpacker')(),
       require("postcss-browser-reporter")(),
-      require("postcss-reporter")(),
-      require('css-mqpacker')()
+      require("postcss-reporter")()
     ]
   },
   eslint: {
