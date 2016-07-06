@@ -30,7 +30,8 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style-loader', ['css-loader', 'postcss-loader'])
+        exclude: /node_modules/,
+        loader: ExtractTextPlugin.extract('style-loader', ['css-loader', 'cssnext-loader', 'postcss-loader'])
       },
       {
         test: /\.(eot|woff|woff2|ttf|svg)(\?\S*)?$/,
@@ -42,32 +43,28 @@ module.exports = {
       }
     ]
   },
-  postcss: [
-    // Need this setting in order to enable hot-reloading when the other css files change
-    // See: https://github.com/mxstbr/react-boilerplate/blob/master/makewebpackconfig.js#L94-L99
-    require('postcss-import')({
-      glob: true,
-      onImport: function (files) {
-          files.forEach(this.addDependency);
-      }.bind(this)
-    }),
-    require("postcss-url")(),
-    require("postcss-cssnext")(),
-    require("cssnano")(),
-    require('postcss-simple-vars')(),
-    require("postcss-pxtorem")(),
-    require("postcss-mixins")(),
-    require("postcss-extend")(),
-    require("postcss-browser-reporter")(),
-    require("postcss-reporter")(),
-    require("autoprefixer")({browsers: ['last 2 versions', 'ie >= 9']}),
-    require('css-mqpacker')()
-  ],
+  postcss: function(webpack) {
+    return [
+      // Need this setting in order to enable hot-reloading when the other css files change
+      // See: https://github.com/postcss/postcss-import#adddependencyto
+      require('postcss-import')({addDependencyTo: webpack}),
+      require("postcss-cssnext")(),
+      require("postcss-url")(),
+      require("cssnano")(),
+      require('postcss-simple-vars')(),
+      require("postcss-pxtorem")(),
+      require("postcss-mixins")(),
+      require("postcss-extend")(),
+      require("postcss-browser-reporter")(),
+      require("postcss-reporter")(),
+      require('css-mqpacker')()
+    ]
+  },
   eslint: {
     configFile: './.eslintrc'
   },
   plugins: [
-    new ExtractTextPlugin("styles.css"),
+    new ExtractTextPlugin("main.css"),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
