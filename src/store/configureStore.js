@@ -1,18 +1,18 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import { browserHistory } from 'react-router';
-import thunk from 'redux-thunk';
+import createSagaMiddleware, { END } from 'redux-saga';
 import { routerMiddleware } from 'react-router-redux';
 import createLogger from 'redux-logger';
-import { apiMiddleware } from 'redux-api-middleware';
 import rootReducer from '../reducers';
 import DevTools from '../containers/DevTools'
 
 const configureStore = (initialState = {}) => {
 
+  const sagaMiddleware = createSagaMiddleware();
+
   const enhancer = compose(
     applyMiddleware(
-      apiMiddleware,
-      thunk,
+      sagaMiddleware,
       routerMiddleware(browserHistory),
       createLogger()
     ),
@@ -28,6 +28,8 @@ const configureStore = (initialState = {}) => {
     });
   }
 
+  store.runSaga = sagaMiddleware.run;
+  store.close = () => store.dispatch(END);
   return store;
 };
 

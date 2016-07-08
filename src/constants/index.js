@@ -1,2 +1,3 @@
-export * from './POSTS';
-export * from './ERROR_MESSAGE';
+export const REQUEST = 'REQUEST';
+export const SUCCESS = 'SUCCESS';
+export const FAILURE = 'FAILURE';
