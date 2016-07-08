@@ -40,8 +40,8 @@ export default class TagFilter extends Component {
 
     // clear inputs
     categoryInput.value = '';
-    tagInput.value = '';
-    searchInput.value = '';
+    tagInput.value      = '';
+    searchInput.value   = '';
   }
 
   render() {

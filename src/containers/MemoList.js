@@ -1,7 +1,6 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import MemoItem from '../components/MemoItem';
-import Aside from '../components/Aside';
 import { loadPosts } from '../actions';
 import Paginator from './Paginator';
 
@@ -23,6 +22,7 @@ class MemoList extends Component {
   }
 
   render() {
+
     const {
       allPosts,
       nextPageUrl,
@@ -31,7 +31,6 @@ class MemoList extends Component {
 
     return (
       <div>
-        <Aside {...this.props} />
         {
           !allPosts.length
             ? isFetching ? <h2>Loading...</h2> : <h2>Empty</h2>

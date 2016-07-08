@@ -17,14 +17,14 @@ export default (
     <Route path="tag/:tag" component={MemoList} />
     <Route path="tag/:tag/search/:search" component={MemoList} />
 
+    <Route path="search/:search"component={MemoList} />
+
     <Route path=":year" component={MemoList} />
     <Route path=":year/search/:search" component={MemoList} />
     <Route path=":year/:month" component={MemoList} />
     <Route path=":year/:month/search/:search" component={MemoList} />
     <Route path=":year/:month/:day" component={MemoList} />
     <Route path=":year/:month/:day/search/:search" component={MemoList} />
-
-    <Route path="search/:search"component={MemoList} />
 
     <Route path="*" component={NotFound} />
   </Route>
