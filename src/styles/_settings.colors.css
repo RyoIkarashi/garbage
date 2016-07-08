@@ -1,0 +1,7 @@
+:root {
+  --colorBrand: var(--brandColor);
+}
+
+body {
+  background: var(--colorBrand);
+}
