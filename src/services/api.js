@@ -20,6 +20,7 @@ function getNextPageUrl(res) {
 const API_ROOT = '/wp-json/wp/v2/';
 
 function callApi(endpoint, schema) {
+
   const fullUrl = (endpoint.indexOf(API_ROOT) === -1) ? API_ROOT + endpoint : endpoint;
 
   return fetch(fullUrl)
@@ -31,6 +32,8 @@ function callApi(endpoint, schema) {
       }
 
       const nextPageUrl = getNextPageUrl(response);
+
+      console.log('schema',schema);
 
       return Object.assign({},
         normalize(json, schema),
@@ -45,8 +48,9 @@ function callApi(endpoint, schema) {
 
 // Schemas for WP-API responses
 const postSchema = new Schema('posts', {
-  idAttrubute: post => post.slug
+  idAttribute: post => post.slug
 });
+const postSchemaArray = arrayOf(postSchema);
 
 const tagSchema = new Schema('tags');
 const tagSchemaArray = arrayOf(tagSchema);
@@ -55,6 +59,13 @@ const categorySchema = new Schema('categories');
 const categorySchemaArray = arrayOf(categorySchema);
 
 // api services
-export const fetchPosts = (slug, params) => callApi(`posts?filter[category_name]=${params.category}&filter[tag]=${params.tag}&filter[s]=${params.search}&filter[name]=${slug}&filter[year]=${params.year}&filter[monthnum]=${params.month}&filter[day]=${params.day}`, postSchema);
+export const fetchPosts = (filter, params) => {
+  console.log('filter', filter);
+  console.log('params', params);
+  if(typeof params !== 'undefined') {
+    return callApi(`posts?filter[category_name]=${params.category}&filter[tag]=${params.tag}&filter[s]=${params.search}&filter[name]=${params.slug}&filter[year]=${params.year}&filter[monthnum]=${params.month}&filter[day]=${params.day}`, postSchemaArray);
+  }
+  return callApi(`posts`, postSchemaArray);
+};
 export const fetchTags = () => callApi('tags?per_page=100', tagSchemaArray);
 export const fetchCategories = () => callApi('categories?per_page=100', categorySchemaArray);

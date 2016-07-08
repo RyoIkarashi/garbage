@@ -1,12 +1,11 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
 
 export default class TagFilter extends Component {
 
   getFilteredPosts(categoryInput, tagInput, searchInput) {
 
-    const { dispatch, loadPosts } = this.props;
+    const { loadPosts, navigate } = this.props;
 
     let fullUrl = '';
     let params = {};
@@ -31,10 +30,12 @@ export default class TagFilter extends Component {
         params.search = searchInput.value;
       }
 
-      dispatch(push(fullUrl));
+      console.log(params);
+
+      navigate(fullUrl);
       loadPosts(fullUrl, params);
     } else {
-      dispatch(push('/'))
+      navigate('/');
       loadPosts('/', params);
     }
 

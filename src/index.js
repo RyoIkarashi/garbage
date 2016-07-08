@@ -1,10 +1,11 @@
-import './styles/main.css';
+import 'babel-polyfill';
+
 import { render } from 'react-dom';
 import Root from './components/Root';
 import configureStore from './store/configureStore';
 import rootSaga from './sagas';
 
-require('./utils/hotreloadExtractedFiles');
+import './utils/hotreloadExtractedFiles';
 
 const store = configureStore(window.__INITIAL_STATE__);
 store.runSaga(rootSaga);

@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import QueryFilter from '../containers/QueryFilter';
-import { loadPosts } from '../actions';
+import { loadPosts, navigate } from '../actions';
 
 class Header extends Component {
   render() {
@@ -13,4 +13,4 @@ class Header extends Component {
   }
 }
 
-export default connect(null, { loadPosts })(Header);
+export default connect(null, { loadPosts, navigate })(Header);
