@@ -2,6 +2,6 @@
   --colorBrand: var(--brandColor);
 }
 
-body {
-  background: var(--colorBrand);
+html, body {
+  background: var(--colorBrand) !important;
 }
