@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import QueryFilter from '../containers/QueryFilter';
-import { loadPosts } from '../actions';
+import { loadPosts, loadCategories, loadTags } from '../actions';
 
 class Header extends Component {
   render() {
@@ -13,4 +13,13 @@ class Header extends Component {
   }
 }
 
-export default connect(null, { loadPosts })(Header);
+function mapStateToProps(state) {
+
+  const {
+    entities: { tags, categories }
+  } = state;
+
+  return { tags, categories };
+}
+
+export default connect(mapStateToProps, { loadPosts, loadCategories, loadTags })(Header);

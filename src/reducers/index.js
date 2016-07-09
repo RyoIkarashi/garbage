@@ -1,13 +1,12 @@
-import * as ActionTypes from '../constants';
+import * as ActionTypes from '../actions';
 import merge from 'lodash/merge';
 import { combineReducers } from 'redux';
 import { routerReducer as routing } from 'react-router-redux';
-
 import paginate from './paginate';
 
-const entities = (state = { posts: {} }, action) => {
-  if (action.payload && action.payload.entities) {
-    return merge({}, state, action.payload.entities);
+const entities = (state = { posts: {}, tags: {}, categories: {} }, action) => {
+  if (action.response && action.response.entities) {
+    return merge({}, state, action.response.entities);
   }
   return state;
 };
@@ -26,13 +25,11 @@ const errorMessage = (state = null, action) => {
 
 const pagination = combineReducers({
   postsByFilter: paginate({
-    mapActionToKey: action => {
-      return action.meta.filter
-    },
+    mapActionToKey: action => action.filter,
     types: [
-      ActionTypes.POSTS_REQUEST,
-      ActionTypes.POSTS_SUCCESS,
-      ActionTypes.POSTS_FAILURE
+      ActionTypes.POSTS.REQUEST,
+      ActionTypes.POSTS.SUCCESS,
+      ActionTypes.POSTS.FAILURE
     ]
   })
 });

@@ -4,6 +4,12 @@ import { push } from 'react-router-redux';
 
 export default class TagFilter extends Component {
 
+  initQueryFilter() {
+    const { loadCategories, loadTags } = this.props;
+    loadCategories();
+    loadTags();
+  }
+
   getFilteredPosts(categoryInput, tagInput, searchInput) {
 
     const { dispatch, loadPosts } = this.props;
@@ -32,16 +38,20 @@ export default class TagFilter extends Component {
       }
 
       dispatch(push(fullUrl));
-      loadPosts(fullUrl, params);
+      loadPosts(fullUrl, params, false);
     } else {
       dispatch(push('/'))
-      loadPosts('/', params);
+      loadPosts('/', params, false);
     }
 
     // clear inputs
     categoryInput.value = '';
     tagInput.value      = '';
     searchInput.value   = '';
+  }
+
+  componentDidMount() {
+    this.initQueryFilter();
   }
 
   render() {
@@ -56,12 +66,21 @@ export default class TagFilter extends Component {
           e.preventDefault();
           this.getFilteredPosts(categoryInput, tagInput, searchInput);
         }}>
-          <input type="text" placeholder="category" ref={node => {
-            categoryInput = node;
-          }}/>
-          <input type="text" placeholder="tag" ref={node => {
-              tagInput = node;
-          }}/>
+
+          <select ref={node => { categoryInput = node}}>
+            {Object.keys(this.props.categories).length
+              ? Object.values(this.props.categories).map(category => <option key={category.slug} value={category.slug}>{category.slug}</option>)
+              : <option value="">Loading...</option>
+            }
+          </select>
+
+          <select ref={node => { tagInput = node}}>
+            {Object.keys(this.props.tags).length
+              ? Object.values(this.props.tags).map(tag => <option key={tag.slug} value={tag.slug}>{tag.slug}</option>)
+              : <option value="">Loading...</option>
+            }
+          </select>
+          
           <input type="text" placeholder="search" ref={node => {
             searchInput = node;
           }}/>

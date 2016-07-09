@@ -1,75 +1,47 @@
-import merge from 'lodash/merge';
-import { Schema, arrayOf, normalize } from 'normalizr';
-import { CALL_API, getJSON } from 'redux-api-middleware';
+import { REQUEST, SUCCESS, FAILURE } from '../constants';
+export const LOAD_POSTS = 'LOAD_POSTS';
+export const LOAD_MORE_POSTS = 'LOAD_MORE_POSTS';
+export const LOAD_TAGS = 'LOAD_TAGS';
+export const LOAD_CATEGORIES = 'LOAD_CATEGORIES';
+export const RESET_ERROR_MESSAGE = 'RESET_ERROR_MESSAGE';
 
-const API_ROOT = '/wp-json/wp/v2';
-
-const postsSchema = new Schema('posts', {
-  idAttribute: post => post.slug
-});
-
-import {
-  POSTS_REQUEST,
-  POSTS_SUCCESS,
-  POSTS_FAILURE
-} from '../constants';
-
-function getNextPageUrl(res) {
-  const link = res.headers.get('link')
-
-  if (!link) {
-    return null
-  }
-
-  const nextLink = link.split(',').find(s => s.indexOf('rel="next"') > -1)
-
-  if (!nextLink) {
-    return null
-  }
-
-  return nextLink.split(';')[0].slice(1, -1)
+function createRequestTypes(base) {
+  return [REQUEST, SUCCESS, FAILURE].reduce((acc, type) => {
+    acc[type] = `${base}_${type}`;
+    return acc;
+  }, {});
 }
 
-const fetchPosts = (filter, nextPageUrl) => {
-  return {
-    [CALL_API]: {
-      endpoint: nextPageUrl,
-      method: 'GET',
-      types: [
-        {
-          type: POSTS_REQUEST,
-          meta: { filter }
-        },
-        {
-          type: POSTS_SUCCESS,
-          payload: (action, state, res) => {
-            return getJSON(res).then((json) => {
-              return merge({nextPageUrl: getNextPageUrl(res)}, normalize(json, arrayOf(postsSchema)));
-            });
-          },
-          meta: { filter, nextPageUrl }
-        },
-        POSTS_FAILURE
-      ]
-    }
-  };
+export const POSTS = createRequestTypes('POSTS');
+export const TAGS = createRequestTypes('TAGS');
+export const CATEGORIES = createRequestTypes('CATEGORIES');
+
+function action(type, payload = {}) {
+  return { type, ...payload };
 }
 
-export const loadPosts = (filter, params, nextPage) => {
+export const posts = {
+  request: (filter) => action(POSTS.REQUEST, {filter}),
+  success: (filter, response) => action(POSTS.SUCCESS, {filter, response}),
+  failure: (filter, error) => action(POSTS.FAILURE, {filter, error})
+};
 
-  return (dispatch, getState) => {
+export const tags = {
+  request: () => action(TAGS.REQUEST),
+  success: (filter, response) => {
+    return action(TAGS.SUCCESS, {response})
+  },
+  failure: (error) => action(TAGS.FAILURE, {error})
+};
 
-    const { category = '', tag = '', search = '', slug = '', year = '', month = '', day = '' } = params;
+export const categories = {
+  request: () => action(CATEGORIES.REQUEST),
+  success: (filter, response) => action(CATEGORIES.SUCCESS, {response}),
+  failure: (error) => action(CATEGORIES.FAILURE, {error})
+};
+export const loadPosts = (filter, params) => action(LOAD_POSTS, {filter, params});
+export const loadMorePosts = (filter, params) => action(LOAD_MORE_POSTS, {filter, params});
+export const loadTags = () => action(LOAD_TAGS);
+export const loadCategories = () => action(LOAD_CATEGORIES);
 
-    const {
-      nextPageUrl = `${API_ROOT}/posts?filter[category_name]=${category}&filter[tag]=${tag}&filter[s]=${search}&filter[name]=${slug}&filter[year]=${year}&filter[monthnum]=${month}&filter[day]=${day}`,
-      pageCount = 0
-    } = getState().pagination.postsByFilter[filter] || {};
-
-    if (pageCount > 0 && !nextPage) {
-      return null;
-    }
-
-    return dispatch(fetchPosts(filter, nextPageUrl));
-  };
-}
+export const resetErrorMessage = () => action(RESET_ERROR_MESSAGE)

@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { loadPosts } from '../actions';
+import { loadMorePosts } from '../actions';
 
 class Paginator extends Component {
 
@@ -10,8 +10,8 @@ class Paginator extends Component {
   }
 
   handleLoadMoreClick() {
-    const { loadPosts, filter, params } = this.props;
-    loadPosts(filter, params, true);
+    const { loadMorePosts, filter, params } = this.props;
+    loadMorePosts(filter, params, true);
   }
 
   render() {
@@ -30,4 +30,4 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps, { loadPosts })(Paginator);
+export default connect(mapStateToProps, { loadMorePosts })(Paginator);
