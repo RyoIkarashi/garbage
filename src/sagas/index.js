@@ -1,6 +1,6 @@
 /* eslint-disable no-constant-condition */
 import { take, put, call, fork, select } from 'redux-saga/effects';
-import { api, history } from '../services';
+import { api } from '../services';
 import * as actions from '../actions';
 import { getPosts, getTags, getCategories } from '../reducers/selectors';
 
@@ -69,28 +69,20 @@ function* loadPosts(filter, params, loadMore) {
 // load repo unless it is cached
 function* loadTags() {
   const tags = yield select(getTags);
-  if (!tags)
+  if (!Object.keys(tags).length)
     yield call(fetchTags);
 }
 
 // load repo unless it is cached
 function* loadCategories() {
   const categories = yield select(getCategories);
-  if (!categories)
+  if (!Object.keys(categories).length)
     yield call(fetchCategories);
 }
 
 /******************************************************************************/
 /******************************* WATCHERS *************************************/
 /******************************************************************************/
-
-// trigger router navigation via history
-function* watchNavigate() {
-  while(true) {
-    const {pathname} = yield take(actions.NAVIGATE)
-    yield history.push(pathname)
-  }
-}
 
 // Fetches data for a User : user data + starred repos
 function* watchLoadPosts() {
@@ -127,7 +119,6 @@ function* watchLoadMorePosts() {
 
 export default function* root() {
   yield [
-    fork(watchNavigate),
     fork(watchLoadPosts),
     fork(watchLoadMorePosts),
     fork(watchLoadTags),
