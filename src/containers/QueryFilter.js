@@ -68,6 +68,7 @@ export default class TagFilter extends Component {
         }}>
 
           <select ref={node => { categoryInput = node}}>
+            <option value=""></option>
             {Object.keys(this.props.categories).length
               ? Object.values(this.props.categories).map(category => <option key={category.slug} value={category.slug}>{category.slug}</option>)
               : <option value="">Loading...</option>
@@ -75,12 +76,13 @@ export default class TagFilter extends Component {
           </select>
 
           <select ref={node => { tagInput = node}}>
+            <option value=""></option>
             {Object.keys(this.props.tags).length
               ? Object.values(this.props.tags).map(tag => <option key={tag.slug} value={tag.slug}>{tag.slug}</option>)
               : <option value="">Loading...</option>
             }
           </select>
-          
+
           <input type="text" placeholder="search" ref={node => {
             searchInput = node;
           }}/>
