@@ -9,8 +9,26 @@ const { posts, tags, categories } = actions;
 
 // url for first page
 // urls for next pages will be extracted from the successive loadMore* requests
-// const firstPageStarredUrl = login => `users/${login}/starred`
-// const firstPageStargazersUrl = fullName => `repos/${fullName}/stargazers`
+const firstPagePostsUrl = params => {
+
+  params.slug     = params.hasOwnProperty('slug')     ? params.slug     : '';
+  params.category = params.hasOwnProperty('category') ? params.category : '';
+  params.tag      = params.hasOwnProperty('tag')      ? params.tag      : '';
+  params.search   = params.hasOwnProperty('search')   ? params.search   : '';
+  params.year     = params.hasOwnProperty('year')     ? params.year     : '';
+  params.month    = params.hasOwnProperty('month')    ? params.month    : '';
+  params.day      = params.hasOwnProperty('day')      ? params.day      : '';
+
+  return `posts?
+    filter[category_name]=${params.category}&
+    filter[tag]=${params.tag}&
+    filter[s]=${params.search}&
+    filter[name]=${params.slug}&
+    filter[year]=${params.year}&
+    filter[monthnum]=${params.month}&
+    filter[day]=${params.day}
+  `;
+};
 
 
 /***************************** Subroutines ************************************/
@@ -20,13 +38,9 @@ const { posts, tags, categories } = actions;
 // apiFn  : api.fetchUser | api.fetchRepo | ...
 // id     : login | fullName
 // url    : next page url. If not provided will use pass it to apiFn
-function* fetchEntity(entity, apiFn, id, url) {
-  console.log(entity);
-  console.log(apiFn);
-  console.log(id);
-  console.log(url);
+function* fetchEntity(entity, apiFn, id, params, url) {
   yield put( entity.request(id) );
-  const {response, error} = yield call(apiFn, url || id);
+  const {response, error} = yield call(apiFn, params, url || id);
   if(response)
     yield put( entity.success(id, response) );
   else
@@ -41,13 +55,13 @@ export const fetchCategories = fetchEntity.bind(null, categories, api.fetchCateg
 // load user unless it is cached
 function* loadPosts(filter, params, loadMore) {
   const posts = yield select(getPosts, filter, params);
-  console.log(posts);
+
   if (!Object.keys(posts).length || loadMore) {
     yield call(
       fetchPosts,
       filter,
       params,
-      posts.nextPageUrl
+      posts.nextPageUrl || firstPagePostsUrl(params)
     );
   }
 }
@@ -81,8 +95,8 @@ function* watchNavigate() {
 // Fetches data for a User : user data + starred repos
 function* watchLoadPosts() {
   while(true) {
-    const {filter} = yield take(actions.LOAD_POSTS);
-    yield fork(loadPosts, filter);
+    const {filter, params} = yield take(actions.LOAD_POSTS);
+    yield fork(loadPosts, filter, params);
   }
 }
 
@@ -104,10 +118,18 @@ function* watchLoadCategories() {
   }
 }
 
+function* watchLoadMorePosts() {
+  while(true) {
+    const {filter, params} = yield take(actions.LOAD_MORE_POSTS);
+    yield fork(loadPosts, filter, params, true);
+  }
+}
+
 export default function* root() {
   yield [
     fork(watchNavigate),
     fork(watchLoadPosts),
+    fork(watchLoadMorePosts),
     fork(watchLoadTags),
     fork(watchLoadCategories)
   ]

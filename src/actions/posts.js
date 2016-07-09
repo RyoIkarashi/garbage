@@ -1,5 +1,6 @@
 import { REQUEST, SUCCESS, FAILURE } from '../constants';
 export const LOAD_POSTS = 'LOAD_POSTS';
+export const LOAD_MORE_POSTS = 'LOAD_MORE_POSTS';
 export const LOAD_TAGS = 'LOAD_TAGS';
 export const LOAD_CATEGORIES = 'LOAD_CATEGORIES';
 
@@ -42,7 +43,8 @@ export const categories = {
 
 export const updateRouterState = state => action(UPDATE_ROUTER_STATE, {state});
 export const navigate = pathname => action(NAVIGATE, {pathname});
-export const loadPosts = (filter) => action(LOAD_POSTS, {filter});
+export const loadPosts = (filter, params) => action(LOAD_POSTS, {filter, params});
+export const loadMorePosts = (filter, params) => action(LOAD_MORE_POSTS, {filter, params});
 export const loadTags = () => action(LOAD_TAGS);
 export const loadCategories = () => action(LOAD_CATEGORIES);
 

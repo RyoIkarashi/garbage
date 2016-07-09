@@ -22,7 +22,6 @@ class MemoList extends Component {
   }
 
   render() {
-
     const {
       allPosts,
       nextPageUrl,

@@ -33,8 +33,6 @@ function callApi(endpoint, schema) {
 
       const nextPageUrl = getNextPageUrl(response);
 
-      console.log('schema',schema);
-
       return Object.assign({},
         normalize(json, schema),
         { nextPageUrl }
@@ -59,13 +57,6 @@ const categorySchema = new Schema('categories');
 const categorySchemaArray = arrayOf(categorySchema);
 
 // api services
-export const fetchPosts = (filter, params) => {
-  console.log('filter', filter);
-  console.log('params', params);
-  if(typeof params !== 'undefined') {
-    return callApi(`posts?filter[category_name]=${params.category}&filter[tag]=${params.tag}&filter[s]=${params.search}&filter[name]=${params.slug}&filter[year]=${params.year}&filter[monthnum]=${params.month}&filter[day]=${params.day}`, postSchemaArray);
-  }
-  return callApi(`posts`, postSchemaArray);
-};
+export const fetchPosts = (params, url) => callApi(url, postSchemaArray);
 export const fetchTags = () => callApi('tags?per_page=100', tagSchemaArray);
 export const fetchCategories = () => callApi('categories?per_page=100', categorySchemaArray);
