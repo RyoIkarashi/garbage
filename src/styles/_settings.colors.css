@@ -1,7 +1,29 @@
 :root {
-  --colorBrand: var(--brandColor);
-}
+  /* Default Color */
+  --color-light: #9A86EC;
+  --color-dark: #545386;
+  --color-dark-light: #8269AE;
+  --color-base: #FFF;
 
-html, body {
-  background: var(--colorBrand) !important;
+  /* Links */
+  --color-links-text: var(--color-dark);
+  --color-links-border: var(--color-dark);
+
+  /* Text */
+  --color-text: var(--color-dark);
+  --color-pre-background: var(--color-dark);
+  --color-pre: var(--color-base);
+  --color-code: var(--color-base);
+
+  /* Buttons */
+  --color-btn: var(--color-dark-light);
+
+  /* Page Head */
+  --color-page-head: var(--color-light);
+
+  /* Headings */
+  --color-headings: var(--color-dark);
+
+  /* Quotes */
+  --color-quotes: var(--color-dark-light);
 }

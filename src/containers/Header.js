@@ -1,12 +1,12 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import QueryFilter from '../containers/QueryFilter';
+import QueryFilter from './QueryFilter';
 import { loadPosts, loadCategories, loadTags } from '../actions';
 
 class Header extends Component {
   render() {
     return (
-      <header className="" role="banner">
+      <header className="header" role="banner">
         <QueryFilter {...this.props} />
       </header>
     )

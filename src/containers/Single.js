@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
+import Loading from '../components/Loading';
 import { loadPosts } from '../actions';
 
 class Single extends Component {
@@ -17,11 +18,11 @@ class Single extends Component {
 
     const isEmpty = allPosts.length === 0;
     const item = allPosts[0];
-    
+
     return (
       <div>
         {isEmpty
-          ? (isFetching ? <h2>Loading...</h2> : <h2>Empty.</h2>)
+          ? <Loading isFetching={isFetching} />
           :  <article>
               <h1>{item.title.rendered}</h1>
               <div dangerouslySetInnerHTML={{__html: item.content.rendered}}></div>

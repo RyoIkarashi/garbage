@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import MemoItem from '../components/MemoItem';
+import Loading from '../components/Loading';
 import { loadPosts } from '../actions';
 import Paginator from './Paginator';
 
@@ -32,7 +33,7 @@ class MemoList extends Component {
       <div>
         {
           !allPosts.length
-            ? isFetching ? <h2>Loading...</h2> : <h2>Empty</h2>
+            ? <Loading isFetching={isFetching} />
             : allPosts.map(item => <MemoItem key={item.id} item={item} />)
         }
         {!nextPageUrl ? '' : <Paginator {...this.props} /> }

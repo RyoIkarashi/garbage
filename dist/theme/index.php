@@ -56,7 +56,7 @@
 
 </head>
 
-<body class="container-fluid container">
+<body>
 
   <div id="root"></div>
 

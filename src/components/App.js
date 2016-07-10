@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import Header from './Header';
+import Header from '../containers/Header';
 import Footer from './Footer';
 
 export default class App extends Component {
@@ -7,7 +7,7 @@ export default class App extends Component {
     return (
       <div>
         <Header />
-        <main>
+        <main class="main">
           {this.props.children}
         </main>
         <Footer />

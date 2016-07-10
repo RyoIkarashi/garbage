@@ -1,113 +1,28 @@
 @charset 'UTF-8';
 
-/**
-* CONTENTS
-*
-* SETTINGS
-* Default..............inuitcss’ default settings.
-* Global...............Globally-available variables and settings/config.
-* Colors...............Manage our color palette in isolation.
-* Responsive...........Set up and name our breakpoints.
-*
-* TOOLS
-* Functions............inuitcss’ default functions.
-* Mixins...............inuitcss’ default mixins.
-* Mixins...............Our extension of inuitcss’ mixins.
-* Responsive...........Responsive tooling (requires responsive settings).
-* Aliases..............Aliases onto longer inuitcss variables and mixins.
-*
-* GENERIC
-* Normalize.css........A level playing field.
-* Reset................A pared back reset to remove margins.
-* Box-sizing...........Better default `box-sizing`.
-* Shared...............Sensibly and tersely share global commonalities.
-*
-* BASE
-* Page.................Page-level styles (HTML element).
-* Page.................Our extension of the inuitcss page module.
-* Headings.............Heading styles
-* Type.................Misc type styles
-* Links................Hyperlink styles
-* Lists................inuitcss list styles
-* Images...............inuitcss images
-* Quotes...............Styling for blockquotes, etc.
-*
-* OBJECTS
-* Wrappers.............Wrappers and page constraints.
-* Buttons..............inuitcss’ buttons module.
-* Layout...............inuitcss’ layout tool.
-* Box..................inuitcss’ box object.
-* Media................The media object.
-* Flag.................The flag object.
-* UI list..............inuitcss’ UI list.
-*
-* COMPONENTS
-* Page-head............Page header styles.
-* Bands................Full-width page bands.
-* Promo................Lead promo blocks on the home page.
-* Page-foot............Page footer styles.
-* Page-micro...........Page copyright styles.
-* Site-nav.............Site’s main nav area.
-* Nav-secondary........Smaller, in-page nav.
-* Buttons..............Extension of inuitcss’ buttons.
-* Boxes................Extension of inuitcss’ box object
-* Post.................Post-specific styles.
-* Pull-quote...........Large, featured quotes.
-* Carousel.............Pure CSS carousel component.
-* Iconic...............Iconic icon styles.
-* Sprites..............Image sprite styles.
-* Feature list.........Big blocky lists of feature items.
-* Annotate.............Pure CSS figure annotations.
-* Ads..................AdPacks overrides.
-* Client-list..........Amazing people I’ve had the pleasure of working with.
-*
-* TRUMPS
-* Clearfix.............I can’t believe we still need this in 2014.
-* Widths...............Simple width helper classes.
-* Widths-responsive....Polyfill for responsive width classes.
-* Spacing..............Micro-level spacing.
-* Show/hide............Helpers to show and side stuff.
-*/
-
 /* SETTINGS */
-@import "../../node_modules/inuit-defaults/_settings.defaults";
 @import 'settings.global';
 @import 'settings.colors';
-@import "../../node_modules/inuit-responsive-settings/_settings.responsive";
 
 /* TOOLS */
-@import "../../node_modules/inuit-functions/tools.functions";
-@import "../../node_modules/inuit-mixins/tools.mixins";
-@import "../../node_modules/inuit-responsive-tools/tools.responsive";
-@import "../../node_modules/inuit-tools-widths/tools.widths";
+@import 'tools.mixins';
+/*@import 'tools.aliases';*/
 
 /* GENERIC: */
-@import "../../node_modules/inuit-normalize/generic.normalize";
-@import "../../node_modules/inuit-box-sizing/generic.box-sizing";
-@import "../../node_modules/inuit-reset/generic.reset";
-@import "../../node_modules/inuit-shared/generic.shared";
+@import 'normalize.css';
+@import 'reset-css/reset.css';
+@import 'generic.box-sizing';
+
 
 /* BASE */
-@import "../../node_modules/inuit-headings/base.headings";
-@import "../../node_modules/inuit-paragraphs/base.paragraphs";
-@import "../../node_modules/inuit-lists/base.lists";
-@import "../../node_modules/inuit-images/base.images";
-@import "../../node_modules/inuit-page/base.page";
+@import 'base.page';
+@import 'base.links';
+/*@import 'base.quotes';*/
+/*@import 'base.iframe';*/
+/*@import 'base.type';*/
+/*@import 'base.table';*/
 
 /* OBJECTS */
-@import "../../node_modules/inuit-block/objects.block";
-@import "../../node_modules/inuit-box/objects.box";
-@import "../../node_modules/inuit-buttons/objects.buttons";
-@import "../../node_modules/inuit-flag/objects.flag";
-@import "../../node_modules/inuit-layout/objects.layout";
-@import "../../node_modules/inuit-list-bare/objects.list-bare";
-@import "../../node_modules/inuit-list-block/objects.list-block";
-@import "../../node_modules/inuit-list-inline/objects.list-inline";
-@import "../../node_modules/inuit-list-ui/objects.list-ui";
-@import "../../node_modules/inuit-media/objects.media";
-@import "../../node_modules/inuit-pack/objects.pack";
-@import "../../node_modules/inuit-tables/objects.tables";
-@import "../../node_modules/inuit-tabs/objects.tabs";
 
 /* COMPONTENTS */
 /*@import "components.404";
@@ -151,74 +66,12 @@
 @import "components.work-list";
 @import "components.work-detail";*/
 
+/* THEMES */
+/*@import 'themes.colors';*/
+/*@import 'themes.layouts';*/
+
 /* TRUMPS */
-@import "../../node_modules/inuit-clearfix/trumps.clearfix";
-@import "../../node_modules/inuit-headings-trumps/trumps.headings";
-@import "../../node_modules/inuit-spacing/trumps.spacing";
-@import "../../node_modules/inuit-responsive-spacing/trumps.spacing-responsive";
-@import "../../node_modules/inuit-widths/trumps.widths";
-@import "../../node_modules/inuit-responsive-widths/trumps.widths-responsive";
-@import "../../node_modules/inuit-print/trumps.print";
+@import 'trumps.clearfix';
 
-
-/*
- * Settings
- */
-/*@import "_settings.colors";
-@import "_settings.global";*/
-
-/*
- * Tools
- */
-/*@import "tools.mixins";*/
-
-/*
- * Generic
- */
-/*@import "normalize-scss/normalize.scss";
-@import "generic.reset";
-@import "generic.box-sizing";
-@import "generic.shared";*/
-
-/*
- * Elements
- */
-/*@import "elements.headings";
-@import "elements.hr";
-@import "elements.forms";
-@import "elements.links";
-@import "elements.lists";
-@import "elements.page";
-@import "elements.quotes";
-@import "elements.tables";*/
-
-/*
- * Objects
- */
-/*@import "objects.animations";
-@import "objects.drawer";
-@import "objects.list-bare";
-@import "objects.media";
-@import "objects.layout";
-@import "objects.overlays";*/
-
-/*
- * Components
- */
-/**/
-
-/*
- * Vendor
- */
-/*@import "vendor.prism";*/
-
-/*
- * Trumps
- */
-/*@import "trumps.clearfix";
-@import "trumps.utilities";*/
-
-/*
- * Healthcheck
- */
-/*@import "healthcheck";*/
+/* Healthcheck  */
+/*@import 'healthcheck';*/
