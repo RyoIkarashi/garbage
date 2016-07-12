@@ -8,10 +8,10 @@ export default class Footer extends Component {
     const year = dt.toFormat('YYYY');
 
     return (
-      <footer className="footer clearfix" role="contentinfo">
-        <small className="copyright">
-          <span className="footer__top--xs">&copy; {year} All Rights Reserved | </span>
-          <span className="foote__bottom--xs"><em><a href="https://github.com/RyoIkarashi/garbage">Garbage</a></em> created by <a href="https://github.com/RyoIkarashi/garbage" className="name-name"><i className="fa fa-github"></i> <strong>Ryo Ikarashi</strong></a></span>
+      <footer className="footer" role="contentinfo">
+        <small className="copy">
+          <span className="copy__desc">&copy; {year} All Rights Reserved | </span>
+          <span className="copy__desc"><em><a href="https://github.com/RyoIkarashi/garbage">Garbage</a></em> created by <a href="https://github.com/RyoIkarashi/garbage" className="name-name"><i className="fa fa-github"></i> <strong>Ryo Ikarashi</strong></a></span>
         </small>
       </footer>
     );
