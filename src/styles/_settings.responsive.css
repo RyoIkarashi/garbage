@@ -1,0 +1,9 @@
+:root {
+  --breakpoint-palm:       'palm', 'screen and (max-width: 44.9375em)';
+  --breakpoint-lap:        'lap', 'screen and (min-width: 45em) and (max-width: 63.9375em)';
+  --breakpoint-lap-and-up: 'lap-and-up', 'screen and (min-width: 45em)';
+  --breakpoint-portable:   'portable', 'screen and (max-width: 63.9375em)';
+  --breakpoint-desk:       'desk', 'screen and (min-width: 64em)';
+  --breakpoint-retina:     'retina', '(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx)';
+  --breakpoints:           var(--breakpoint-palm), var(--breakpoint-lap), var(--breakpoint-lap-and-up), var(--breakpoint-portable), var(--breakpoint-desk), var(--breakpoint-retina);
+}
