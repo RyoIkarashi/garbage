@@ -3,24 +3,27 @@
 /* SETTINGS */
 @import 'settings.global';
 @import 'settings.colors';
+@import 'settings.defaults';
+@import 'settings.responsive';
 
 /* TOOLS */
 @import 'tools.mixins';
-/*@import 'tools.aliases';*/
+@import 'tools.responsive';
 
 /* GENERIC: */
 @import 'normalize.css';
 @import 'reset-css/reset.css';
 @import 'generic.box-sizing';
-
+@import 'generic.shared';
 
 /* BASE */
 @import 'base.page';
+@import 'base.headings';
+@import 'base.type';
 @import 'base.links';
-/*@import 'base.quotes';*/
-/*@import 'base.iframe';*/
-/*@import 'base.type';*/
-/*@import 'base.table';*/
+@import 'base.quotes';
+@import 'base.iframe';
+@import 'base.table';
 
 /* OBJECTS */
 
@@ -71,7 +74,6 @@
 /*@import 'themes.layouts';*/
 
 /* TRUMPS */
-@import 'trumps.clearfix';
 
 /* Healthcheck  */
 /*@import 'healthcheck';*/
