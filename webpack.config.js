@@ -32,7 +32,7 @@ module.exports = {
       {
         test: /\.css$/,
         exclude: /node_modules/,
-        loader: ExtractTextPlugin.extract('style-loader', ['css-loader?autoprefixer', 'postcss-loader'])
+        loader: ExtractTextPlugin.extract('style-loader', ['css-loader?autoprefixer&sourceMap', 'postcss-loader'])
       },
       {
         test: /\.(eot|woff|woff2|ttf|svg)(\?\S*)?$/,
@@ -48,17 +48,23 @@ module.exports = {
     return [
       require('postcss-easy-import')({addDependencyTo: webpack,prefix: '_'}),
       require('postcss-url')(),
-      require("postcss-mixins")(),
-      require("postcss-extend")(),
-      require("postcss-for")(),
-      require("postcss-conditionals")(),
-      require("postcss-pxtorem")(),
-      require("postcss-simple-vars")(),
+      require('postcss-mixins')(),
+      require('postcss-extend')(),
+      require('postcss-each')(),
+      // require('postcss-at-rules-variables')(),
+      require('postcss-for')(),
+      require('postcss-nth-list')(),
+      require('postcss-simple-vars')(),
+      require('postcss-custom-properties')(),
+      require('postcss-strip-units')(),
+      require('postcss-conditionals')(),
+      require('postcss-calc')({warnWhenCannotResolve: true}),
+      require('postcss-cssnext')({browsers: 'last 2 versions'}),
       require('css-mqpacker')(),
-      require("postcss-cssnext")({browsers: 'last 2 versions'}),
-      require("postcss-browser-reporter")(),
-      require("postcss-reporter")()
-    ]
+      require('postcss-utilities')(),
+      require('postcss-browser-reporter')(),
+      require('postcss-reporter')()
+    ];
   },
   eslint: {
     configFile: './.eslintrc'
