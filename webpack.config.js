@@ -3,7 +3,7 @@ var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'eval-cheap-module-source-map',
   entry: [
     'babel-polyfill', './src/index.js',
     'webpack-hot-middleware/client',
@@ -46,6 +46,7 @@ module.exports = {
   },
   postcss: function(webpack) {
     return [
+      require('postcss-devtools')(),
       require('postcss-easy-import')({addDependencyTo: webpack,prefix: '_'}),
       require('postcss-url')(),
       require('postcss-mixins')(),
