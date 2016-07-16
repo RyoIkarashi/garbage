@@ -10,4 +10,26 @@
   max-width: var(--md-max-width);
   margin: 0 auto;
   padding: var(--md-padding);
+
+  pre {
+    background: var(--color-code);
+    border: 1px solid var(--color-code-border);
+    code {
+      color: var(--color-code-text);
+    }
+  }
+
+  code {
+    color: var(--color-code-text);
+    border: 1px solid var(--color-code-border);
+    margin: 0 5px;
+  }
+
+  a {
+    color: var(--color-links-text);
+  }
+
+  ol, ul {
+    padding-left: inherit;
+  }
 }

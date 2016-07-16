@@ -5,6 +5,7 @@
   --color-dark-light: #8269AE;
   --color-base: #FFF;
   --color-type: #444;
+  --color-program: rgba(0,0,0,.04);
 
   /* Background */
   --color-background: var(--color-base);
@@ -16,8 +17,10 @@
   /* Text */
   --color-text: var(--color-type);
   --color-pre-background: var(--color-dark);
-  --color-pre: var(--color-base);
-  --color-code: var(--color-base);
+  --color-pre: var(--color-program);
+  --color-code: var(--color-program);
+  --color-code-text: var(--color-dark);
+  --color-code-border: var(--color-dark);
 
   /* Buttons */
   --color-button-background: var(--color-dark-light);

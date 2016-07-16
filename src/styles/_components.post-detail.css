@@ -1,1 +1,8 @@
-h1{}
+.single-post{
+
+}
+  .single-post__title {
+    text-align: center;
+    border-bottom: 0 !important;
+    margin-bottom: var(--base-spacing-unit--large) !important;
+  }
