@@ -46,12 +46,11 @@ module.exports = {
   },
   postcss: function(webpack) {
     return [
-      require('postcss-easy-import')({addDependencyTo: webpack,prefix: '_'}),
+      require('postcss-easy-oimport')({addDependencyTo: webpack,prefix: '_'}),
       require('postcss-url')(),
       require('postcss-mixins')(),
       require('postcss-extend')(),
       require('postcss-each')(),
-      // require('postcss-at-rules-variables')(),
       require('postcss-for')(),
       require('postcss-nth-list')(),
       require('postcss-simple-vars')(),
