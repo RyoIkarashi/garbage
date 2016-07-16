@@ -5,7 +5,7 @@
   --color-dark-light: #8269AE;
   --color-base: #FFF;
   --color-type: #444;
-  --color-program: rgba(0,0,0,.04);
+  --color-program: rgba(0,0,0,.01);
 
   /* Background */
   --color-background: var(--color-base);

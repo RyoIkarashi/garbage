@@ -1,16 +1,36 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
+import hljs from 'highlight.js';
+import 'date-utils';
+import $ from 'jquery';
 import Loading from '../components/Loading';
 import { loadPosts } from '../actions';
 
 class Single extends Component {
+
+  getDate(date) {
+    date = new Date(date);
+    return date.toFormat('YYYY/MM/DD');
+  }
+
+  highlightBlock() {
+    $('pre code').each(function(i, block) {
+      hljs.highlightBlock(block);
+    });
+  }
 
   componentDidMount() {
     const { filter, params, loadPosts } = this.props;
     loadPosts(filter, params);
   }
 
+  componentDidUpdate() {
+    this.highlightBlock();
+  }
+
   render() {
+
     const {
       allPosts,
       postsPagination: { isFetching }
@@ -25,6 +45,9 @@ class Single extends Component {
           ? <Loading isFetching={isFetching} />
           :  <article className="single-post [ markdown-body ]">
               <h1 className="single-post__title">{item.title.rendered}</h1>
+              <time className="single-post__time">
+                <p>created at <Link to={`/time/${this.getDate(item.date)}`}>{this.getDate(item.date)}</Link></p>
+              </time>
               <div className="single-post__body" dangerouslySetInnerHTML={{__html: item.content.rendered}}></div>
             </article>
         }

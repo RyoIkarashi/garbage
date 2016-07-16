@@ -49,6 +49,7 @@
 
 /* VENDOR */
 @import 'github-markdown-css';
+@import 'highlight.js/styles/foundation.css';
 
 /* THEMES */
 /* @import 'themes.colors'; */
