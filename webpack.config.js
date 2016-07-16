@@ -48,6 +48,7 @@ module.exports = {
     return [
       require('postcss-devtools')(),
       require('postcss-easy-import')({addDependencyTo: webpack,prefix: '_'}),
+      require('postcss-nested')(),
       require('postcss-url')(),
       require('postcss-mixins')(),
       require('postcss-extend')(),

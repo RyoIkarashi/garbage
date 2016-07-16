@@ -62,6 +62,7 @@
     "postcss-inline-comment": "^3.0.0",
     "postcss-loader": "^0.9.1",
     "postcss-mixins": "^5.0.0",
+    "postcss-nested": "^1.0.0",
     "postcss-nth-list": "^1.0.2",
     "postcss-reporter": "^1.4.1",
     "postcss-simple-vars": "^3.0.0",
