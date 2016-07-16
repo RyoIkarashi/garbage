@@ -31,12 +31,20 @@ class MemoList extends Component {
 
     return (
       <div>
-        {
-          !allPosts.length
-            ? <Loading isFetching={isFetching} />
-            : allPosts.map(item => <MemoItem key={item.id} item={item} />)
-        }
-        {!nextPageUrl ? '' : <Paginator {...this.props} /> }
+        <div className="[ band ]">
+          <div className="wrapper">
+            <div className="layout">
+              {
+                !allPosts.length
+                  ? <Loading isFetching={isFetching} />
+                  : allPosts.map(item => <MemoItem key={item.id} item={item} />)
+              }
+            </div>
+          </div>
+        </div>
+        <div className="wrapper">
+          {!nextPageUrl ? '' : <Paginator {...this.props} /> }
+        </div>
       </div>
     )
   }

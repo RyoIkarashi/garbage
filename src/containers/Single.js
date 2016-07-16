@@ -23,9 +23,9 @@ class Single extends Component {
       <div>
         {isEmpty
           ? <Loading isFetching={isFetching} />
-          :  <article>
-              <h1>{item.title.rendered}</h1>
-              <div dangerouslySetInnerHTML={{__html: item.content.rendered}}></div>
+          :  <article className="single-post [ markdown-body ]">
+              <h1 className="single-post__title">{item.title.rendered}</h1>
+              <div className="single-post__body" dangerouslySetInnerHTML={{__html: item.content.rendered}}></div>
             </article>
         }
       </div>

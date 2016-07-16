@@ -9,10 +9,13 @@ export default class MemoList extends Component {
   render() {
     const { item } = this.props;
     return (
-      <article className="layout__item desk-one-fifth">
-        <Link to={`/posts/${item.slug}`}><h1>{item.title.rendered}</h1></Link>
-        <div dangerouslySetInnerHTML={{__html: item.content.rendered}} />
-      </article>
+      <div className="[ layout__item ] [ desk-one-fifth--square lap-and-up-one-third--square palm-one-half mobile-one-whole ]">
+        <Link to={`/posts/${item.slug}`}>
+          <article className="post">
+            <h1 className="post__title">{item.title.rendered}</h1>
+          </article>
+        </Link>
+      </div>
     )
   }
 }

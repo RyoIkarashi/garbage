@@ -16,7 +16,7 @@ class Paginator extends Component {
 
   render() {
     return (
-      <button className="btn" onClick={this.handleLoadMoreClick}>Load More.</button>
+      <button className="load-more-button [ btn btn--small ]" onClick={this.handleLoadMoreClick}>Load More.</button>
     )
   }
 }
