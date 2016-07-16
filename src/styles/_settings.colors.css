@@ -5,6 +5,9 @@
   --color-dark-light: #8269AE;
   --color-base: #FFF;
 
+  /* Background */
+  --color-background: var(--color-base);
+
   /* Links */
   --color-links-text: var(--color-dark);
   --color-links-border: var(--color-dark);

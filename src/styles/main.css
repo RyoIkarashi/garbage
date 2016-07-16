@@ -20,6 +20,7 @@
 @import 'base.page';
 @import 'base.headings';
 @import 'base.type';
+@import 'base.images';
 @import 'base.links';
 @import 'base.quotes';
 @import 'base.iframe';
@@ -27,18 +28,18 @@
 
 /* OBJECTS */
 /*@import 'objects.layout';*/
-/*@import 'objects.block';
-@import 'objects.box';
+@import 'objects.block';
+/*@import 'objects.box';
 @import 'objects.buttons';*/
 
 /* COMPONTENTS */
-@import 'components.404';
+/*@import 'components.404';
 @import 'components.header';
 @import 'components.footer';
 @import 'components.filter';
 @import 'components.post-list';
 @import 'components.post-detail';
-@import 'components.social-media';
+@import 'components.social-media';*/
 
 /* THEMES */
 /*@import 'themes.colors';*/
