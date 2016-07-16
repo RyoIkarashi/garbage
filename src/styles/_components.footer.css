@@ -1,0 +1,7 @@
+.footer {
+  width: 100%;
+  @extend sticky-footer;
+  @media (--breakpoint-desk) {
+    background: #000;
+  }
+}

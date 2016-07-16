@@ -26,7 +26,7 @@ pre {
   background-color: var(--color-pre-background);
   border-radius: var(--base-round);
 
-  @mixin media-query lap-and-up {
+  @media --desktop-lap-and-up {
     margin-right: -var(--base-spacing-unit--small);
     margin-left:  -var(--base-spacing-unit--small);
   }

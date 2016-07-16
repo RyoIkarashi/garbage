@@ -8,7 +8,7 @@
 
 /* TOOLS */
 @import 'tools.mixins';
-@import 'tools.responsive';
+@import 'tools.sticky-footer';
 
 /* GENERIC: */
 @import 'normalize.css';
@@ -27,26 +27,26 @@
 @import 'base.table';
 
 /* OBJECTS */
-/*@import 'objects.layout';*/
+@import 'objects.layout';
 @import 'objects.block';
-/*@import 'objects.box';
-@import 'objects.buttons';*/
+@import 'objects.buttons';
 
 /* COMPONTENTS */
-/*@import 'components.404';
+@import 'components.page';
+@import 'components.page-micro';
+@import 'components.404';
 @import 'components.header';
 @import 'components.footer';
 @import 'components.filter';
 @import 'components.post-list';
 @import 'components.post-detail';
-@import 'components.social-media';*/
+@import 'components.social-media';
 
 /* THEMES */
-/*@import 'themes.colors';*/
-/*@import 'themes.layouts';*/
+/* @import 'themes.colors'; */
 
 /* TRUMPS */
-/* Nothing for now */
+@import 'trumps.widths-responsive';
 
 /* Healthcheck  */
 /* disabled @import 'healthcheck';*/

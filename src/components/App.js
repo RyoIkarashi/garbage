@@ -7,9 +7,13 @@ export default class App extends Component {
     return (
       <div>
         <Header />
-        <main className="main">
-          {this.props.children}
-        </main>
+          <main className="main">
+            <div className="wrapper">
+              <div className="layout">
+                {this.props.children}
+              </div>
+            </div>
+          </main>
         <Footer />
       </div>
     );

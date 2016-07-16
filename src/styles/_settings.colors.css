@@ -4,6 +4,7 @@
   --color-dark: #545386;
   --color-dark-light: #8269AE;
   --color-base: #FFF;
+  --color-type: #444;
 
   /* Background */
   --color-background: var(--color-base);
@@ -13,13 +14,15 @@
   --color-links-border: var(--color-dark);
 
   /* Text */
-  --color-text: var(--color-dark);
+  --color-text: var(--color-type);
   --color-pre-background: var(--color-dark);
   --color-pre: var(--color-base);
   --color-code: var(--color-base);
 
   /* Buttons */
-  --color-btn: var(--color-dark-light);
+  --color-button-background: var(--color-dark-light);
+  --color-button-text: var(--color-base);
+  --color-button-border: var(--color-dark);
 
   /* Page Head */
   --color-page-head: var(--color-light);

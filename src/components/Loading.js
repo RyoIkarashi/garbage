@@ -1,5 +1,5 @@
 const Loading = ({isFetching}) => (
-  <section className="loading">
+  <section className="loading [ layout__item ]">
     <div className="container">
       <div className="inner">
         {

@@ -9,7 +9,7 @@ export default class MemoList extends Component {
   render() {
     const { item } = this.props;
     return (
-      <article>
+      <article className="layout__item desk-one-fifth">
         <Link to={`/posts/${item.slug}`}><h1>{item.title.rendered}</h1></Link>
         <div dangerouslySetInnerHTML={{__html: item.content.rendered}} />
       </article>

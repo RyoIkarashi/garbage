@@ -19,12 +19,12 @@ export default (
 
     <Route path="search/:search"component={MemoList} />
 
-    <Route path=":year" component={MemoList} />
-    <Route path=":year/search/:search" component={MemoList} />
-    <Route path=":year/:month" component={MemoList} />
-    <Route path=":year/:month/search/:search" component={MemoList} />
-    <Route path=":year/:month/:day" component={MemoList} />
-    <Route path=":year/:month/:day/search/:search" component={MemoList} />
+    <Route path="time/:year" component={MemoList} />
+    <Route path="time/:year/search/:search" component={MemoList} />
+    <Route path="time/:year/:month" component={MemoList} />
+    <Route path="time/:year/:month/search/:search" component={MemoList} />
+    <Route path="time/:year/:month/:day" component={MemoList} />
+    <Route path="time/:year/:month/:day/search/:search" component={MemoList} />
 
     <Route path="*" component={NotFound} />
   </Route>
