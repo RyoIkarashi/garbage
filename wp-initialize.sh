@@ -15,6 +15,7 @@ PLUGINS=(
   simple-page-ordering
   rest-api
   wordpress-seo
+  jetpack-markdown
 )
 
 : "Vagrant up" && {
