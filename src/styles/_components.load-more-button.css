@@ -1,3 +1,4 @@
 .load-more-button {
   @util center-block;
+  margin-bottom: var(--base-spacing-unit--large);
 }

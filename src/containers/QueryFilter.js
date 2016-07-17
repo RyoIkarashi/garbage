@@ -68,7 +68,7 @@ export default class TagFilter extends Component {
         }}>
 
           <select className="query-filter__select query-filter__select--category" ref={node => { categoryInput = node}}>
-            <option selected disabled>Categories</option>
+            <option value="">Categories</option>
             {Object.keys(this.props.categories).length
               ? Object.values(this.props.categories).map(category => <option key={category.slug} value={category.slug}>{category.slug}</option>)
               : <option value="">Loading...</option>
@@ -76,7 +76,7 @@ export default class TagFilter extends Component {
           </select>
 
           <select className="query-filter__select query-filter__select--tag" ref={node => { tagInput = node}}>
-            <option selected disabled>Tags</option>
+            <option value="">Tags</option>
             {Object.keys(this.props.tags).length
               ? Object.values(this.props.tags).map(tag => <option key={tag.slug} value={tag.slug}>{tag.slug}</option>)
               : <option value="">Loading...</option>

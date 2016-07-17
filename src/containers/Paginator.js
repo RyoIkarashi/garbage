@@ -16,7 +16,11 @@ class Paginator extends Component {
 
   render() {
     return (
-      <button className="load-more-button [ btn btn--small ]" onClick={this.handleLoadMoreClick}>Load More.</button>
+      <button className="load-more-button [ btn btn--small ]" onClick={this.handleLoadMoreClick}>
+        {this.props.postsPagination.isFetching
+          ? 'Loading...' : 'Load More'
+        }
+      </button>
     )
   }
 }
