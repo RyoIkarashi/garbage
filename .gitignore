@@ -9,3 +9,6 @@ dist/assets/main.css
 dist/assets/iehack.js
 dist/assets/styles.css
 
+deploy-plugins.sh
+deploy-to-wp.sh
+deploy.sh
