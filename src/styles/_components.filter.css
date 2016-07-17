@@ -2,6 +2,7 @@
   --query-filter-height:            30px;
   --query-filter-button-background: var(--color-dark-light);
   --query-filter-button-text:       var(--color-base);
+  --query-filter-button-width:      var(--query-filter-height);
   --query-filter-padding:           var(--base-spacing-unit);
   --query-filter-padding--small:    var(--base-spacing-unit--small);
   --query-filter-padding--tiny:     var(--base-spacing-unit--tiny);
@@ -69,6 +70,8 @@
     .query-filter__button--submit {
       position: absolute;
       right: 6px;
+      width: var(--query-filter-button-width);
+      padding: 0;
       cursor: pointer;
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;

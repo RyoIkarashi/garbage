@@ -21,7 +21,7 @@
     margin: 0;
     padding-right: var(--base-spacing-unit);
     padding-left: var(--base-spacing-unit);
-    @mixin fontsize 24px, 1.7;
+    @mixin fontsize 20px, 1.7;
     @mixin transition color;
 
     @media (--breakpoint-lap-and-up) {

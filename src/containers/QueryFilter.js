@@ -81,7 +81,7 @@ export default class TagFilter extends Component {
           <input className="query-filter__input query-filter__input--search" type="text" placeholder="search" ref={node => {
             searchInput = node;
           }}/>
-          <button className="query-filter__button query-filter__button--submit" type="submit"><i className="icon ion-search"></i></button>
+          <button className="query-filter__button query-filter__button--submit" type="submit"></button>
         </form>
       </div>
     )
