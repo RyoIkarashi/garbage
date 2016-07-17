@@ -49,6 +49,9 @@
   <meta property="fb:admins" content="100002542111748">
   <meta property="article:publisher" content="https://www.facebook.com/ryo.ikarashi.5" />
 
+  <!-- Ionicons CDN -->
+  <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
   <!-- Favicon -->
   <link rel="shortcut icon" href=""/>
   <!-- Styles.css -->

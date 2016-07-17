@@ -21,7 +21,7 @@ blockquote {
   padding-left: var(--base-spacing-unit);
   border-left: 2px solid var(--color-quotes);
   font-style: italic;
-  @mixin font-size var(--quotes-size);
+  @mixin fontsize var(--quotes-size);
   quotes: "“" "”";
   p {
     text-indent: -0.41em;

@@ -1,7 +1,8 @@
 :root {
-  --md-min-width: 200px;
-  --md-max-width: 980px;
-  --md-padding:   45px;
+  --md-min-width:      200px;
+  --md-max-width:      980px;
+  --md-padding:        45px;
+  --md-padding--small: 20px;
 }
 
 .markdown-body {
@@ -9,7 +10,10 @@
   min-width: var(--md-min-width);
   max-width: var(--md-max-width);
   margin: 0 auto;
-  padding: var(--md-padding);
+  padding: var(--md-padding--small);
+  @media (--breakpoint-lap-and-up) {
+    padding: var(--md-padding);
+  }
 
   pre {
     background: var(--color-code);

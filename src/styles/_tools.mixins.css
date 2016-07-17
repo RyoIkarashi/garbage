@@ -42,7 +42,7 @@
 }
 
 /*  Create a fully formed type style (sizing and vertical rhythm) by passing in a single value */
-@define-mixin font-size $font-size, $line-height: auto {
+@define-mixin fontsize $font-size, $line-height: auto {
     font-size: $font-size;
     font-size: calc( strip($font-size) / strip(var(--base-font-size)) * 1rem );
 

@@ -55,7 +55,7 @@ figure {
 }
 
   figcaption {
-    @mixin font-size 12px;
+    @mixin fontsize 12px;
     @media screen and (min-width: 1380px) {
         margin-left: 128px; /* [2] */
     }

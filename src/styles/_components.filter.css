@@ -1,3 +1,56 @@
-h2 {
-  
+:root {
+  --query-filter-height: 30px;
+  --query-filter-button-background: var(--color-dark-light);
+  --query-filter-button-text: var(--color-base);
+  --query-filter-padding: var(--base-spacing-unit);
+  --query-filter-padding--small: var(--base-spacing-unit--small);
+  --query-filter-input-background: var(--color-base);
+  --query-filter-input-width: var(--color-base);
+  --query-filter-input-background: var(--color-base);
+  --query-filter-select-background: var(--color-base);
+  --query-filter-select-text: var(--color-dark);
 }
+
+.query-filter {
+  float: right;
+}
+
+  .query-filter__select,
+  .query-filter__input,
+  .query-filter__button {
+    border-radius: var(--base-round);
+    height: var(--query-filter-height);
+    line-height: var(--query-filter-height);
+    border: none;
+    outline: none;
+    margin-right: var(--base-spacing-unit--tiny);
+  }
+
+  .query-filter__select {
+    -webkit-appearance: none;
+    padding-right: var(--query-filter-padding);
+    padding-left: var(--query-filter-padding);
+    color: var(--query-filter-select-text);
+    position: relative;
+    @mixin font-weight bold;
+  }
+
+  .query-filter__input {
+    background: var(--query-filter-input-background);
+  }
+    .query-filter__input--search {
+      padding-right: var(--query-filter-padding);
+      padding-left: var(--query-filter-padding);
+    }
+
+  .query-filter__button {
+    vertical-align: top;
+    background: var(--query-filter-button-background);
+    color: var(--query-filter-button-text);
+    padding-right: var(--query-filter-padding--small);
+    padding-left: var(--query-filter-padding--small);
+  }
+    .query-filter__button--submit {
+      cursor: pointer;
+      @mixin fontsize 22px;
+    }

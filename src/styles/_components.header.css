@@ -1,3 +1,13 @@
-h1{
+:root {
+  --page-header-background: var(--color-dark);
+  --page-header-text: var(--color-base);
+  --page-header-padding: var(--base-spacing-unit--tiny);
+}
 
+.header {
+  background-color: var(--page-header-background);
+  color: var(--color-base);
+  padding: var(--page-header-padding);
+  margin-bottom: var(--base-spacing-unit);
+  @util clearfix;
 }

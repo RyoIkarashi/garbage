@@ -6,7 +6,7 @@ import { loadPosts, loadCategories, loadTags } from '../actions';
 class Header extends Component {
   render() {
     return (
-      <header className="header" role="banner">
+      <header className="header">
         <QueryFilter {...this.props} />
       </header>
     )

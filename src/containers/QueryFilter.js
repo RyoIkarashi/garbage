@@ -62,31 +62,31 @@ export default class TagFilter extends Component {
 
     return (
       <div>
-        <form onSubmit={e => {
+        <form className="query-filter" onSubmit={e => {
           e.preventDefault();
           this.getFilteredPosts(categoryInput, tagInput, searchInput);
         }}>
 
-          <select ref={node => { categoryInput = node}}>
-            <option value=""></option>
+          <select className="query-filter__select query-filter__select--category" ref={node => { categoryInput = node}}>
+            <option selected disabled>Categories</option>
             {Object.keys(this.props.categories).length
               ? Object.values(this.props.categories).map(category => <option key={category.slug} value={category.slug}>{category.slug}</option>)
               : <option value="">Loading...</option>
             }
           </select>
 
-          <select ref={node => { tagInput = node}}>
-            <option value=""></option>
+          <select className="query-filter__select query-filter__select--tag" ref={node => { tagInput = node}}>
+            <option selected disabled>Tags</option>
             {Object.keys(this.props.tags).length
               ? Object.values(this.props.tags).map(tag => <option key={tag.slug} value={tag.slug}>{tag.slug}</option>)
               : <option value="">Loading...</option>
             }
           </select>
 
-          <input type="text" placeholder="search" ref={node => {
+          <input className="query-filter__input query-filter__input--search" type="text" placeholder="search" ref={node => {
             searchInput = node;
           }}/>
-          <button type="submit">Filter Posts</button>
+          <button className="query-filter__button query-filter__button--submit" type="submit"><i className="icon ion-search"></i></button>
         </form>
       </div>
     )

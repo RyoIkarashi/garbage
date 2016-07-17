@@ -4,10 +4,19 @@
   border-radius: var(--base-round);
   padding: 50%;
   margin-bottom: var(--base-spacing-unit);
+  overflow: scroll;
 }
   .post__title {
     @util center;
     width: 100%;
     text-align: center;
-    @mixin font-size 24px;
+    margin: 0;
+    padding-right: var(--base-spacing-unit);
+    padding-left: var(--base-spacing-unit);
+    @mixin fontsize 24px, 1.7;
+
+    @media (--breakpoint-lap-and-up) {
+      padding-right: var(--base-spacing-unit--small);
+      padding-left: var(--base-spacing-unit--small);
+    }
   }
