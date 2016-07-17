@@ -43,11 +43,6 @@ export default class TagFilter extends Component {
       dispatch(push('/'))
       loadPosts('/', params, false);
     }
-
-    // clear inputs
-    categoryInput.value = '';
-    tagInput.value      = '';
-    searchInput.value   = '';
   }
 
   componentDidMount() {
