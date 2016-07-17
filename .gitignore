@@ -9,6 +9,6 @@ dist/assets/main.css
 dist/assets/iehack.js
 dist/assets/styles.css
 
-deploy-plugins.sh
-deploy-to-wp.sh
-deploy.sh
+wp-deploy-plugins.sh
+wp-deploy-to-local-wp.sh
+wp-deploy-to-prod.sh
