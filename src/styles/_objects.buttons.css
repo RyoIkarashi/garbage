@@ -1,15 +1,18 @@
 :root {
-  --btn-padding:        var(--base-spacing-unit);
-  --btn-padding--tiny:  calc(var(--btn-padding) / 4);
-  --btn-padding--small: calc(var(--btn-padding) / 2);
-  --btn-padding--large: calc(var(--btn-padding) * 2);
-  --btn-padding--huge:  calc(var(--btn-padding) * 4);
-  --btn-background:     var(--color-button-background);
-  --btn-text:           var(--color-button-text);
-  --btn-radius:         var(--base-round);
-  --btn-border-color:   var(--color-button-border);
-  --btn-border-width:   2px;
-  --btn-border-style:   solid;
+  --btn-color-text:        var(--color-base);
+  --btn-padding:           var(--base-spacing-unit);
+  --btn-padding--tiny:     calc(var(--btn-padding) / 4);
+  --btn-padding--small:    calc(var(--btn-padding) / 2);
+  --btn-padding--large:    calc(var(--btn-padding) * 2);
+  --btn-padding--huge:     calc(var(--btn-padding) * 4);
+  --btn-background:        var(--color-button-background);
+  --btn-background--hover: var(--color-button-background--hover);
+  --btn-text:              var(--color-button-text);
+  --btn-radius:            var(--base-round);
+  --btn-border-color:      var(--color-button-border);
+  --btn-border-width:      2px;
+  --btn-border--flush:     0px;
+  --btn-border-style:      solid;
 }
 
 .btn {
@@ -23,14 +26,17 @@
   padding: calc(var(--btn-padding) - var(--btn-border-width)) calc(var(--btn-padding) * 2 - var(--btn-border-width));
   background-color: var(--btn-background);
   border-radius: var(--btn-radius);
-  border: var(--btn-border-width) var(--btn-border-style) var(--btn-border-color);
+  border: var(--btn-border--flush);
   outline: none;
-  &,
+  color: var(--btn-color-text);
+
   &:hover,
   &:active,
   &:focus {
-      text-decoration: none;
-      color: var(--btn-text);
+    text-decoration: none;
+    color: var(--btn-text);
+    background-color: var(--btn-background--hover);
+    @mixin transition background-color;
   }
 
   &.btn--tiny {
