@@ -23,6 +23,7 @@ class Single extends Component {
   componentDidMount() {
     const { filter, params, loadPosts } = this.props;
     loadPosts(filter, params);
+    this.highlightBlock();
   }
 
   componentDidUpdate() {
