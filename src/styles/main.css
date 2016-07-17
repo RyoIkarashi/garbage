@@ -4,10 +4,12 @@
 @import 'settings.global';
 @import 'settings.colors';
 @import 'settings.defaults';
+@import 'settings.transitions';
 @import 'settings.responsive';
 
 /* TOOLS */
 @import 'tools.mixins';
+@import 'tools.transitions';
 @import 'tools.sticky-footer';
 
 /* GENERIC: */

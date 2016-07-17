@@ -5,6 +5,14 @@
   padding: 50%;
   margin-bottom: var(--base-spacing-unit);
   overflow: scroll;
+  background: var(--color-base);
+  @mixin transition background;
+  &:hover {
+    background: var(--color-dark);
+    .post__title {
+      color: var(--color-base);
+    }
+  }
 }
   .post__title {
     @util center;
@@ -14,6 +22,7 @@
     padding-right: var(--base-spacing-unit);
     padding-left: var(--base-spacing-unit);
     @mixin fontsize 24px, 1.7;
+    @mixin transition color;
 
     @media (--breakpoint-lap-and-up) {
       padding-right: var(--base-spacing-unit--small);
