@@ -26,7 +26,6 @@
 @import 'base.images';
 @import 'base.links';
 @import 'base.quotes';
-@import 'base.iframe';
 @import 'base.table';
 
 /* OBJECTS */
@@ -35,6 +34,7 @@
 @import 'objects.bands';
 @import 'objects.block';
 @import 'objects.buttons';
+@import 'objects.iframe';
 
 /* COMPONTENTS */
 @import 'components.page';

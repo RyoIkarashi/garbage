@@ -9,6 +9,10 @@ import { loadPosts } from '../actions';
 
 class Single extends Component {
 
+  addIframeFlag() {
+    $('iframe').parents('p').addClass('iframe');
+  }
+
   getDate(date) {
     date = new Date(date);
     return date.toFormat('YYYY/MM/DD');
@@ -24,10 +28,12 @@ class Single extends Component {
     const { filter, params, loadPosts } = this.props;
     loadPosts(filter, params);
     this.highlightBlock();
+    this.addIframeFlag();
   }
 
   componentDidUpdate() {
     this.highlightBlock();
+    this.addIframeFlag();
   }
 
   render() {
