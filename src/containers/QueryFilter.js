@@ -57,7 +57,7 @@ export default class TagFilter extends Component {
 
     return (
       <div>
-        <i className="[ icon ion-trash-b ] [ hide-mobile ]"></i>
+        <i className="header__icon [ icon ion-trash-b ] [ hide-mobile hide-palm ]"></i>
         <form className="query-filter" onSubmit={e => {
           e.preventDefault();
           this.getFilteredPosts(categoryInput, tagInput, searchInput);
