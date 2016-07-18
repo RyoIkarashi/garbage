@@ -4,10 +4,20 @@ import { push } from 'react-router-redux';
 
 export default class TagFilter extends Component {
 
+  constructor(props) {
+    super(props);
+    this.goHome = this.goHome.bind(this);
+  }
+
   initQueryFilter() {
     const { loadCategories, loadTags } = this.props;
     loadCategories();
     loadTags();
+  }
+
+  goHome() {
+    const { dispatch } = this.props;
+    dispatch(push('/'));
   }
 
   getFilteredPosts(categoryInput, tagInput, searchInput) {
@@ -57,7 +67,7 @@ export default class TagFilter extends Component {
 
     return (
       <div>
-        <i className="header__icon [ icon ion-trash-b ] [ hide-mobile hide-palm ]"></i>
+        <i className="header__icon [ icon ion-trash-b ] [ hide-mobile hide-palm ]" onClick={this.goHome}></i>
         <form className="query-filter" onSubmit={e => {
           e.preventDefault();
           this.getFilteredPosts(categoryInput, tagInput, searchInput);
