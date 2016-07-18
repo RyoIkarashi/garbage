@@ -27,7 +27,7 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel',
-        query: { presets: ['react', 'es2015', 'stage-2', 'react-hmre'] }
+        query: { presets: ['es2015', 'stage-2', 'react', 'react-hmre'] }
       },
       {
         test: /\.css$/,

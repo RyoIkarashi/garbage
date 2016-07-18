@@ -93,6 +93,7 @@
     "normalize.css": "^4.2.0",
     "normalizr": "^2.1.0",
     "path": "^0.12.7",
+    "radium": "^0.18.0",
     "react": "^15.0.2",
     "react-dom": "^15.0.2",
     "react-highlight": "^0.8.0",
