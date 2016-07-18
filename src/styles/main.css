@@ -57,6 +57,7 @@
 /* @import 'themes.colors'; */
 
 /* TRUMPS */
+@import 'trumps.show-hide';
 @import 'trumps.widths-responsive';
 @import 'trumps.github-markdown';
 
