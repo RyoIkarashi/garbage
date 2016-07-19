@@ -1,5 +1,7 @@
 # [Garbage](http://garbage.ryoikarashi.com)
 
+![garbage](https://raw.githubusercontent.com/RyoIkarashi/garbage/5fa28b398c555227287407630a690d74e1660e5e/logo.png "garbage")
+
 Garbage is my personal website to keep track of daily memories.
 
 Using Wordpress as a CMS and React for SPA.
