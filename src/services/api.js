@@ -14,7 +14,7 @@ function getNextPageUrl(res) {
     return null
   }
 
-  return nextLink.split(';')[0].replace(' ', '').slice(1, -1)
+  return nextLink.split(';')[0].replace(/ /g, '').slice(1, -1)
 }
 
 const API_ROOT = '/wp-json/wp/v2/';
