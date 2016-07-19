@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import Helmet from 'react-helmet';
 import hljs from 'highlight.js';
 import 'date-utils';
 import $ from 'jquery';
@@ -48,8 +49,14 @@ class Single extends Component {
 
     return (
       <div>
+        {!isEmpty
+          ?
+            <Helmet title={item.title.rendered} />
+          : ''
+        }
+
         {isEmpty
-          ? <Loading isFetching={isFetching} />
+          ?  <Loading isFetching={isFetching} />
           :  <article className="single-post [ markdown-body ]">
               <h1 className="single-post__title">{item.title.rendered}</h1>
               <time className="single-post__time">

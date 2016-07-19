@@ -76,12 +76,6 @@
   <!-- Styles.css -->
   <link href="/assets/main.css" rel="stylesheet">
 
-</head>
-
-<body>
-
-  <div id="root"></div>
-
   <!-- Google Analytics -->
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -110,6 +104,12 @@
        fjs.parentNode.insertBefore(js, fjs);
      }(document, 'script', 'facebook-jssdk'));
   </script>
+
+</head>
+
+<body>
+
+  <div id="root"></div>
 
   <!-- Main Script -->
   <script type="text/javascript" src="/assets/bundle.js"></script>
