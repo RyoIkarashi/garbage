@@ -6,9 +6,9 @@
   margin-bottom: var(--base-spacing-unit);
   overflow: scroll;
   background: var(--color-base);
-  @mixin transition background;
+  @mixin transition all;
   &:hover {
-    background: var(--color-dark);
+    background-color: var(--color-dark);
     .post__title {
       color: var(--color-base);
     }
