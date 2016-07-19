@@ -16,4 +16,6 @@
     font-size: var(--page-header-icon-size);
     color: var(--color-base);
     cursor: pointer;
+    float: left;
+    margin-right: var(--base-spacing-unit--small);
   }

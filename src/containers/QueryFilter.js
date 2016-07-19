@@ -67,11 +67,12 @@ export default class TagFilter extends Component {
 
     return (
       <div>
-        <i className="header__icon [ icon ion-trash-b ] [ hide-mobile hide-palm ]" onClick={this.goHome}></i>
         <form className="query-filter" onSubmit={e => {
           e.preventDefault();
           this.getFilteredPosts(categoryInput, tagInput, searchInput);
         }}>
+
+          <i className="header__icon [ icon ion-trash-b ] [ hide-mobile hide-palm ]" onClick={this.goHome}></i>
 
           <select className="query-filter__select query-filter__select--category" ref={node => { categoryInput = node}}>
             <option value="">Categories</option>
