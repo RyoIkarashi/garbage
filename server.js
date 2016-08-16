@@ -4,10 +4,14 @@ const express = require('express');
 const webpack = require('webpack');
 const webpackMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
+const Dashboard = require('webpack-dashboard');
+const DashboardPlugin = require('webpack-dashboard/plugin');
 const webpackConfig = require('./webpack.config.js');
 
 const app = express();
 const compiler = webpack(webpackConfig);
+const dashboard = new Dashboard();
+compiler.apply(new DashboardPlugin(dashboard.setData));
 
 app.use(webpackMiddleware(compiler, {
   noInfo: true,
